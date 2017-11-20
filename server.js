@@ -1,10 +1,13 @@
 const express = require('express');
 const morgan = require('morgan');
 const app = express();
+const passport = require('passport');
 
 app.use(express.static('public'));
 app.use(morgan('common'));
-
+app.use(passport.initialize());
+passport.use(basicStrategy);
+passport.use(jwtStrategy)
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html');
@@ -44,3 +47,11 @@ if(require.main === module){
 };
 
 module.exports = {app, runServer, closeServer};
+
+app.get('/api/protected',
+	passport.authenticate('jwt', {session: false}),
+	(req, res) => {
+		return res.json({
+			data:'rosebud'
+		});
+	})
