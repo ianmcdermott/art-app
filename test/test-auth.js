@@ -41,7 +41,13 @@ describe('Auth endpoints', function(){
 
 	describe('/api/auth/login', function(){
 		it('Should reject requests with no credentials', function(){
-			
+			return chai
+				.request(app)
+				.post('/api/auth/login')
+				.then(()=>
+					expect.fail(null, null, 'Request should not succeed')
+				)
+				.catch
 		});
 
 		it('Should reject requests with incorrect username', function(){

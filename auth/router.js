@@ -12,7 +12,7 @@ const createAuthToken = user => {
 	})
 }
 
-
+//exchange user/pass for jwt
 router.post('/login', 
 	passport.authenticate('basic', {session: false}),
 	(req, res) => {
@@ -20,9 +20,8 @@ router.post('/login',
 		res.json({authToken});
 	})
 
-router.post(
-	'/refresh'
-
+//refresh jwt
+router.post('/refresh',
 	passport.authenticate('jwt', {session: false}),
 	(req, res) => {
 		const authToken = createAuthToken(req.user);

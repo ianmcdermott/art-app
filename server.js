@@ -1,17 +1,55 @@
+require('dotenv').config();
 const express = require('express');
-const morgan = require('morgan');
 const app = express();
+
+const morgan = require('morgan');
+const passport = require('passport');
+const mongoose = require('mongoose');
 const passport = require('passport');
 
+const {router: usersRouter} = require('./users')
+const {router: authRouter, basicStrategy, jwtStrategy} = require('./auth')
+
+mongoose.Promise = global.Promise;
+
+const {PORT, DATABASE_URL} = require('./config');
+
 app.use(express.static('public'));
+
 app.use(morgan('common'));
+
+app.use(function(req, res, next){
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Headers', 'Content-Type');
+	res.header('Access-Control-Allow-Methods' 'GET,POST,PUT,DELETE');
+	next();
+});
+
 app.use(passport.initialize());
 passport.use(basicStrategy);
-passport.use(jwtStrategy)
+passport.use(jwtStrategy);
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/views/index.html');
+app.use('/api/users/', usersRouter);
+app.use('/api/auth/', authRouter);
+
+//use jwt to access endpoint with user data
+app.get('/api/protected',
+	passport.authenticate('jwt', {session:false}),
+	(req, res) =>{
+		return res.json({
+			data: 'Hello World';
+		})
+	}
+);
+
+app.use('*', (req, res) =>{
+	return res.status(404).json({message: 'Not Found'});
 });
+
+
+// app.get('/', (req, res) => {
+//   res.sendFile(__dirname + '/views/index.html');
+// });
 
 let server;
 
@@ -47,11 +85,3 @@ if(require.main === module){
 };
 
 module.exports = {app, runServer, closeServer};
-
-app.get('/api/protected',
-	passport.authenticate('jwt', {session: false}),
-	(req, res) => {
-		return res.json({
-			data:'rosebud'
-		});
-	})

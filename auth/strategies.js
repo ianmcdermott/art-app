@@ -8,7 +8,7 @@ const {
 const {User} = require('../users/models');
 const {JWT_SECRET} = require('../config');
 
-const BasicStrategy = new BasicStrategy((username, password, callback) =>{
+const basicStrategy = new BasicStrategy((username, password, callback) =>{
 	let user;
 	User.findOne({username: username})
 		.then(_user =>
@@ -19,7 +19,16 @@ const BasicStrategy = new BasicStrategy((username, password, callback) =>{
 					message: 'Incorrect username or password'
 				})
 			}
-			return callback(null, user)
+			return user.validatePassword(password);
+		})
+		.then(isValid =>{
+			if(!isValid){
+				return Promise.reject({
+					reason: 'LoginError',
+					message: 'Incorrect username or password'
+				});
+			}
+			return callback(null, user);
 		})
 		.catch(err => {
 			if(err.reason === 'LoginError'){
@@ -29,7 +38,7 @@ const BasicStrategy = new BasicStrategy((username, password, callback) =>{
 		});
 });
 
-const JwtStrategy = new JwtStrategy({
+const jwtStrategy = new JwtStrategy({
 	secretOrKey: JWT_SECRET,
 	jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
 	algorithms: ['HS256']
@@ -39,10 +48,4 @@ const JwtStrategy = new JwtStrategy({
 	}
 );
 
-router.post('/refresh',
-	passport.authenticate('jwt', {session: false}),
-	(req, res) => {
-		const authToken = createAuthToken(req.user);
-		res.json({authToken});
-	}
-);
+module.exports = {basicStrategy, jwtStrategy};
