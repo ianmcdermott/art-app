@@ -36,7 +36,7 @@ app.get('/api/protected',
 	passport.authenticate('jwt', {session:false}),
 	(req, res) =>{
 		return res.json({
-			data: 'Hello World';
+			data: 'Hello World'
 		})
 	}
 );
