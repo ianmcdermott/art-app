@@ -1,14 +1,11 @@
-const passport = require('passport');
-const {BasicStrategy} = require('passport-http');
-const {
-	Strategy: JwtStrategy,
-	ExtractJwt
-} = require('passport-jwt');
+'use strict'
+const {Strategy: LocalStrategy} = require('passport-local');
+const {Strategy: JwtStrategy, ExtractJwt} = require('passport-jwt')
 
 const {User} = require('../users/models');
 const {JWT_SECRET} = require('../config');
 
-const basicStrategy = new BasicStrategy((username, password, callback) =>{
+const localStrategy = new LocalStrategy((username, password, callback) =>{
 	let user;
 	User.findOne({username: username})
 		.then(_user => {
@@ -48,4 +45,4 @@ const jwtStrategy = new JwtStrategy({
 	}
 );
 
-module.exports = {basicStrategy, jwtStrategy};
+module.exports = {localStrategy, jwtStrategy};
