@@ -74,7 +74,7 @@ router.post('/', jsonParser, (req, res) => {
 			req.body[field].trim().length > sizedFields[field].max
 			);
 
-	if(tooLargeField || tooSmallField)}{
+	if(tooLargeField || tooSmallField){
 		return res.status(422).json({
 			code: 422,
 			reason: 'ValidationError',
@@ -128,13 +128,3 @@ router.get('/', (req, res) =>{
 });
 
 module.exports = {router};
-
-
-const createAuthToken = user => {
-	return jwt.sign({user}, config.JWT_SECRET, {
-		subject: user.username,
-		expiresIn: config.JWT_EXPIRY,
-		algorithm: 'HS256'
-	});
-};
-
