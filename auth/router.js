@@ -9,8 +9,10 @@ const createAuthToken = user => {
 		subject: user.username,
 		expiresIn: config.JWT_EXPIRY,
 		algorithm: 'HS256'
-	})
-}
+	});
+};
+
+const router = express.Router();
 
 //exchange user/pass for jwt
 router.post('/login', 
