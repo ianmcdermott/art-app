@@ -13,7 +13,7 @@ const expect = chai.expect;
 
 chai.use(chaiHttp);
 
-describe('/api/user' function(){
+describe('/api/users', function(){
 	const username = 'exampleUser';
 	const password = 'examplePass';
 	const firstName = 'First';
@@ -23,16 +23,19 @@ describe('/api/user' function(){
 	const firstNameB = 'FirstB';
 	const lastNameB = 'LastB'; 
 
-	before(function(){
-		return runServer();
-	})
-	after(function(){
-		return closeServer();
-	})
+	before(function() {
+	 	return runServer();
+	});
 
-	beforeEach(function(){});
+	after(function() {
+	    return closeServer();
+	});
 
-	afterEach(function(){
+	beforeEach(function() {
+
+	});
+
+	afterEach(function() {
 		return User.remove({});
 	});
 
@@ -59,10 +62,11 @@ describe('/api/user' function(){
 						const res = err.response;
 						expect(res).to.have.status(422);
 						expect(res.body.reason).to.equal('ValidationError');
-						expect(res.body.message).to.equal('Missing field');
+						expect(res.body.message).to.equal('Missing Field');
 						expect(res.body.location).to.equal('username');
 					});
 			});
+
 			it('Should reject users with missing password', function(){
 				return chai
 					.request(app)
@@ -88,6 +92,7 @@ describe('/api/user' function(){
 					})
 
 			});
+
 			it('Should reject users with non-string username', function(){
 				return chai
 					.request(app)
@@ -145,7 +150,7 @@ describe('/api/user' function(){
 					.send({
 						username,
 						password,
-						firstName 1,
+						firstName: 1,
 						lastName
 					})
 					.then(() =>{
@@ -436,7 +441,7 @@ describe('/api/user' function(){
 						expect(res.body.firstName).to.equal(firstName);
 						expect(res.body.lastName).to.equal(lastName);
 						return User.findOne({
-							username;
+							username
 						});
 					})
 					.then(user => {

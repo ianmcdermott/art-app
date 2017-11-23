@@ -1,3 +1,4 @@
+'use strict';
 const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
@@ -79,7 +80,7 @@ router.post('/', jsonParser, (req, res) => {
 			code: 422,
 			reason: 'ValidationError',
 			message: tooSmallField
-				? `Must be at least ${sizedFields[tooSmallField].min} characters long`
+				? `Must f at least ${sizedFields[tooSmallField].min} characters long`
 				: `Must be under ${sizedFields[tooLargeField].min} characters `,
 			location: tooSmallField || tooLargeField
 		});

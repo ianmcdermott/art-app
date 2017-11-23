@@ -34,13 +34,7 @@ const MOCK_SEQUENCE_UPDATES = {
 	"user-drawn": [image]
 }
 
-// POSTs user registration data to User Auth endpoint
 
-// POSTs user auth token to User Auth endpoint
-
-// GETs protected endpoint for USER REGISTRATION from Auth endpoint
-
-// POSTs refresh token to USER AUTH endpoint 
 
 // POSTs new user object at the USER endpoint 
 

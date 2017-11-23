@@ -2,7 +2,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const jwt = require('jsonwebtoken');
 
-const {app, runServer, closerServer} = require('../server');
+const {app, runServer, closeServer} = require('../server');
 const {User} = require('../users');
 const {JWT_SECRET} = require('../config');
 
@@ -21,7 +21,7 @@ describe('Auth endpoints', function(){
 	});
 
 	after(function(){
-		return closerServer();
+		return closeServer();
 	})
 
 	beforeEach(function(){
@@ -42,43 +42,192 @@ describe('Auth endpoints', function(){
 	describe('/api/auth/login', function(){
 		it('Should reject requests with no credentials', function(){
 			return chai
-				.request(app)
+			 	.request(app)
 				.post('/api/auth/login')
 				.then(()=>
 					expect.fail(null, null, 'Request should not succeed')
 				)
-				.catch
+				.catch(err => {
+					if(err instanceof chai.Assertion){
+						throw err;
+					}
+					const res = err.response;
+					expect(res).to.have.status(400);
+				})
 		});
 
 		it('Should reject requests with incorrect username', function(){
+			return chai
+				.request(app)
+				.post('/api/auth/login')
+				.send({username: 'wrongUsername', password})
+				.then(() =>
+					expect.fail(null, null, 'Request should not succeed')
+				)
+				.catch(err => {
+					if(err instanceof chai.AssertionError){
+						throw err;
+					}
 
+					const res = err.response;
+					expect(res).to.have.status(400);
+				});
 		});
 
 		it('Should reject requests with incorrect password', function(){
+			return chai
+				.request(app)
+				.post('/api/auth/login')
+				.send({ password: 'wrongPassword', password })
+				.then(() =>
+					expect.fail(null, null, 'Request should not succeed')
+				)
+				.catch(err => {
+					if(err instanceof chai.AssertionError){
+						throw err;
+					}
 
+					const res = err.response;
+					expect(res).to.have.status(401);
+				});
 		});
 
 		it('Should return valid auth token', function(){
-
+			return chai
+				.request(app)
+				.post('/api/auth/login')
+				.send({username, password})
+				.then( res =>{
+					expect(res).to.have.status(200);
+					expect(res.body).to.be.an('object');
+					expect(res.body.authToken).to.be.a('string');
+					const payload = jwt.verify(token, JWT_SECRET, {
+						algorithm: ['H256']
+					})
+					expect(payload.user).to.deep.equal({
+						username,
+						firstName,
+						lastName
+					});
+				});
 		});
-
-	})
+	});
 
 	describe('/api/auth/refresh', function(){
-		it('Should reject reequests with no credentials', function(){
-
+		it('Should reject requests with no credentials', function(){
+			return chai
+				.request(app)
+				.post('/api/auth/refresh')
+				.then(()=>
+					expect.fail(null, null, 'Request should not succeed')
+				)
+				.catch(err =>{
+					if(err instanceof chai.AssertionError){
+						throw err;
+					}
+					const res = err.response;
+					expect(res).to.have.status(401);
+				});
 		});
 
 		it('Should reject requests with invalid auth token', function(){
+			const token = jwt.sign(
+			{
+				username,
+				firstName,
+				lastName
+			},
+				'wrongSecret',
+			{
+				algorithm: 'HS256',
+				expiresIn: '7d'
+			}
+			);
 
+			return chai
+				.request(app)
+				.post('/api/users/refresh')
+				.set('authorization', `Bearer ${token}`)
+				.then(() =>
+					expect.fail(null, null, 'Request should not succeed')
+				)
+				.catch(err => {
+					if(err instanceof chai.AssertionError){
+						throw err;
+					}
+					const res = err.response;
+					expect(res).to.have.status(401);
+				});
 		});
 
 		it('Should reject requests with expired auth token', function(){
+			const token = jwt.sign(
+				{
+				user: {	username,
+						firstName,
+						lastName  },
+				exp: Math.floor(Date.now() / 1000) - 10
+			},
 			
+				JWT_SECRET,
+			{
+				algorithm: 'HS256',
+				subject: username,
+			}
+			);
+				
+			return chai
+				.request(app)
+				.post('/api/users/refresh')
+				.set('authorization', `Bearer ${token}`)
+				.then(res => {
+					expect.fail(null, null, 'Request should not succeed')
+				})
+				.catch(err =>{
+					if(err instanceof chai.AssertionError){
+						throw err;
+					}
+					const res = err.response;
+					expect(res).should.have.status(401);
+				})
+
 		});
 
 		it('Should return valid auth token with newer expiry date', function(){
-			
+			const token = jwt.sign(
+				{
+				user: {	username,
+						firstName,
+						lastName  },
+			},
+				JWT_SECRET,
+			{
+				algorithm: 'HS256',
+				subject: username,
+				expiresIn: '7d'
+			}
+			);
+
+			const decoded = jwt.decode(token);
+			return chai
+				.request(app)
+				.post('/api/users/refresh')
+				.set('authorization', `Bearer ${token}`)
+				.then(res => {
+					expect(res).to.have.status(200);
+					expect(res.body).to.be.an('object');
+					expect(res.body.authToken).to.be.a('string');
+					const payload = jwt.verify(token, JWT_SECRET, {
+						algorithm: ['HS256']
+					})
+					expect(payload.user).to.deep.equal({
+						username,
+						firstName,
+						lastName
+					});
+					expect(payload.exp).to.be.at.least(decoded.exp);
+				})
+
 		});
 	})
 })
