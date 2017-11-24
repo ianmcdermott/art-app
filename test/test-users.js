@@ -237,7 +237,7 @@ describe('/api/users', function(){
 							throw err;
 						}
 						const res = err.response;
-						expect(res).should.have.status(422);
+						expect(res).to.have.status(422);
 						expect(res.body.reason).to.equal('ValidationError');
 						expect(res.body.message).to.equal('Cannot start or end with whitespace');
 						expect(res.body.location).to.equal('password');
@@ -262,39 +262,14 @@ describe('/api/users', function(){
 							throw err;
 						}
 						const res = err.response;
-						expect(res).should.have.status(422);
+						expect(res).to.have.status(422);
 						expect(res.body.reason).to.equal('ValidationError');
-						expect(res.body.message).to.equal('Missing Field');
+						expect(res.body.message).to.equal('Must be at least 1 characters long');
 						expect(res.body.location).to.equal('username');
 					})
 
 			});
 
-			it('Should reject users with empty password', function(){
-				return chai
-					.request(app)
-					.post('/api/users')
-					.send({
-						username,
-						password: '',
-						firstName,
-						lastName
-					})
-					.then(() =>{
-						expect.fail(null, null, 'Request should not succeed');
-					})
-					.catch(err =>{
-						if(err instanceof chai.AssertionError){
-							throw err;
-						}
-						const res = err.response;
-						expect(res).should.have.status(422);
-						expect(res.body.reason).to.equal('ValidationError');
-						expect(res.body.message).to.equal('Missing Field');
-						expect(res.body.location).to.equal('password');
-					})
-
-			});
 
 			it('Should reject user with duplicate username', function(){
 				return chai
@@ -323,7 +298,7 @@ describe('/api/users', function(){
 							throw err;
 						}
 						const res = err.response;
-						expect(res).should.have.status(422);
+						expect(res).to.have.status(422);
 						expect(res.body.reason).to.equal('ValidationError');
 						expect(res.body.message).to.equal('Username taken');
 						expect(res.body.location).to.equal('username');
@@ -352,7 +327,7 @@ describe('/api/users', function(){
 						const res = err.response;
 						expect(res).to.have.status(422);
 						expect(res.body.reason).to.equal('ValidationError');
-						expect(res.body.message).to.equal('Password should be more than 9 characters long');
+						expect(res.body.message).to.equal('Must be at least 10 characters long');
 						expect(res.body.location).to.equal('password');
 					})
 
@@ -378,7 +353,7 @@ describe('/api/users', function(){
 						const res = err.response;
 						expect(res).to.have.status(422);
 						expect(res.body.reason).to.equal('ValidationError');
-						expect(res.body.message).to.equal('Password should be no more than 72 characters');
+						expect(res.body.message).to.equal('Must be at most 72 characters long');
 						expect(res.body.location).to.equal('password');
 					})
 			});
@@ -412,7 +387,7 @@ describe('/api/users', function(){
 						expect(user).to.not.be.null;
 						expect(user.firstName).to.equal(firstName);
 						expect(user.lastName).to.equal(lastName);
-						return user.validatePasword(password);
+						return user.validatePassword(password);
 					})
 					.then(passwordIsCorrect =>{
 						expect(passwordIsCorrect).to.be.true;
@@ -431,8 +406,8 @@ describe('/api/users', function(){
 					})
 					.then(res => {
 						expect(res).to.have.status(201);
-						expect(res).to.be.an('object');
-						expect(res).to.have.keys(
+						expect(res.body).to.be.an('object');
+						expect(res.body).to.have.keys(
 							'username',
 							'firstName',
 							'lastName'
@@ -473,10 +448,10 @@ describe('/api/users', function(){
 						username: usernameB,
 						password: passwordB,
 						firstName: firstNameB,
-						lastName: lastnameB
+						lastName: lastNameB
 					}
 				)
-				.then(() => chai.request(app).get('api/users'))
+				.then(() => chai.request(app).get('/api/users'))
 				.then(res => {
 					expect(res).to.have.status(200);
 					expect(res.body).to.be.an('array');

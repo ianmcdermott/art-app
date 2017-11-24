@@ -70,7 +70,7 @@ describe('Auth endpoints', function(){
 					}
 
 					const res = err.response;
-					expect(res).to.have.status(400);
+					expect(res).to.have.status(401);
 				});
 		});
 
@@ -78,7 +78,7 @@ describe('Auth endpoints', function(){
 			return chai
 				.request(app)
 				.post('/api/auth/login')
-				.send({ password: 'wrongPassword', password })
+				.send({ username, password: 'wrongPassword' })
 				.then(() =>
 					expect.fail(null, null, 'Request should not succeed')
 				)
@@ -92,26 +92,27 @@ describe('Auth endpoints', function(){
 				});
 		});
 
-		it('Should return valid auth token', function(){
-			return chai
-				.request(app)
-				.post('/api/auth/login')
-				.send({username, password})
-				.then( res =>{
-					expect(res).to.have.status(200);
-					expect(res.body).to.be.an('object');
-					expect(res.body.authToken).to.be.a('string');
-					const payload = jwt.verify(token, JWT_SECRET, {
-						algorithm: ['H256']
-					})
-					expect(payload.user).to.deep.equal({
-						username,
-						firstName,
-						lastName
-					});
-				});
-		});
-	});
+	it('Should return a valid auth token', function () {
+      return chai
+        .request(app)
+        .post('/api/auth/login')
+        .send({ username, password })
+        .then(res => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.an('object');
+          const token = res.body.authToken;
+          expect(token).to.be.a('string');
+          const payload = jwt.verify(token, JWT_SECRET, {
+            algorithm: ['HS256']
+          });
+          expect(payload.user).to.deep.equal({
+            username,
+            firstName,
+            lastName
+          });
+        });
+    });
+  });
 
 	describe('/api/auth/refresh', function(){
 		it('Should reject requests with no credentials', function(){
@@ -146,8 +147,8 @@ describe('Auth endpoints', function(){
 
 			return chai
 				.request(app)
-				.post('/api/users/refresh')
-				.set('authorization', `Bearer ${token}`)
+				.post('/api/auth/refresh')
+				.set('Authorization', `Bearer ${token}`)
 				.then(() =>
 					expect.fail(null, null, 'Request should not succeed')
 				)
@@ -178,7 +179,7 @@ describe('Auth endpoints', function(){
 				
 			return chai
 				.request(app)
-				.post('/api/users/refresh')
+				.post('/api/auth/refresh')
 				.set('authorization', `Bearer ${token}`)
 				.then(res => {
 					expect.fail(null, null, 'Request should not succeed')
@@ -188,46 +189,47 @@ describe('Auth endpoints', function(){
 						throw err;
 					}
 					const res = err.response;
-					expect(res).should.have.status(401);
+					expect(res).to.have.status(401);
 				})
 
 		});
+    it('Should return a valid auth token with a newer expiry date', function () {
+      const token = jwt.sign(
+        {
+          user: {
+            username,
+            firstName,
+            lastName
+          }
+        },
+        JWT_SECRET,
+        {
+          algorithm: 'HS256',
+          subject: username,
+          expiresIn: '7d'
+        }
+      );
+      const decoded = jwt.decode(token);
 
-		it('Should return valid auth token with newer expiry date', function(){
-			const token = jwt.sign(
-				{
-				user: {	username,
-						firstName,
-						lastName  },
-			},
-				JWT_SECRET,
-			{
-				algorithm: 'HS256',
-				subject: username,
-				expiresIn: '7d'
-			}
-			);
-
-			const decoded = jwt.decode(token);
-			return chai
-				.request(app)
-				.post('/api/users/refresh')
-				.set('authorization', `Bearer ${token}`)
-				.then(res => {
-					expect(res).to.have.status(200);
-					expect(res.body).to.be.an('object');
-					expect(res.body.authToken).to.be.a('string');
-					const payload = jwt.verify(token, JWT_SECRET, {
-						algorithm: ['HS256']
-					})
-					expect(payload.user).to.deep.equal({
-						username,
-						firstName,
-						lastName
-					});
-					expect(payload.exp).to.be.at.least(decoded.exp);
-				})
-
-		});
-	})
-})
+      return chai
+        .request(app)
+        .post('/api/auth/refresh')
+        .set('authorization', `Bearer ${token}`)
+        .then(res => {
+          expect(res).to.have.status(200);
+          expect(res.body).to.be.an('object');
+          const token = res.body.authToken;
+          expect(token).to.be.a('string');
+          const payload = jwt.verify(token, JWT_SECRET, {
+            algorithm: ['HS256']
+          });
+          expect(payload.user).to.deep.equal({
+            username,
+            firstName,
+            lastName
+          });
+          expect(payload.exp).to.be.at.least(decoded.exp);
+        });
+    });
+  });
+});
