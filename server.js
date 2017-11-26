@@ -7,7 +7,7 @@ const passport = require('passport');
 
 const {router: usersRouter} = require('./users')
 const {router: authRouter, localStrategy, jwtStrategy} = require('./auth')
-
+const {router: sequenceRouter} = require('./sequences')
 mongoose.Promise = global.Promise;
 
 const {PORT, DATABASE_URL} = require('./config');
@@ -33,6 +33,8 @@ passport.use(jwtStrategy);
 
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
+// app.use('/api/sequences/', sequenceRouter);
+
 
 const jwtAuth = passport.authenticate('jwt', {session: false});
 
@@ -47,11 +49,6 @@ app.get('/api/protected', jwtAuth, (req, res) =>{
 app.use('*', (req, res) =>{
 	return res.status(404).json({message: 'Not Found'});
 });
-
-
-// app.get('/', (req, res) => {
-//   res.sendFile(__dirname + '/views/index.html');
-// });
 
 let server;
 

@@ -13,7 +13,7 @@ const MOCK_USER_UPDATES = {
 		 "lastName": 'Last'},
  	"id": "111111",
 	"artwork": [{
-		"image": Image,
+		"image": "media/path/image.png",
 		"animation": "0001",
 		"title": "Hello World",
 		"date": "2015-03-25"
@@ -24,14 +24,15 @@ const MOCK_ANIMATION_UPDATES = {
 	"id":   "888888",
 	"title":  "Foo Fa",
 	"creation-date":  "2015-03-25",
-	// "audio":  "file",
+	"frame": "media/path/image.png"
 }
 
 
 const MOCK_SEQUENCE_UPDATES = {
 	"id":   "111111",
-	"guide": [image]},
-	"user-drawn": [image]
+	"guide": ["media/path/image.png", "media/path/image.png", "media/path/image.png"]},
+	"user-drawn": ["media/path/image.png", "media/path/image.png", "media/path/image.png"],
+	"credits": ["fakeUser1", "fakeUser2", "fakeUser3"]
 }
 
 
@@ -81,7 +82,23 @@ function displayArtwork(data){
 }
 
 // *User Gallery* GETs "id" from ANIMATION endpoint and uses it to retrieve "drawn-frames" array from SEQUENCE endpoint 
+function getAnimationId(){
+	// const settings = {
+	// 	url: '../api/animation',
+	// 	dataType: 'json',
+	// 	type: 'GET',
+	// 	success: callback
+	// }
+	// .ajax(settings);
+	setTimeout(callback(retrieveSequence), 100);
+}
 
+// Callback for User Gallery Gets frames using animation ID and displays in p5Js
+function retrieveSequence(data){
+	//render theatre show in theatre div
+	//$('#theatre').html(theatre.js)
+
+}
 
 // *Canvas* ||submit button|| is clicked and user's "artwork", "title", "creation date" POSTs to USER endpoint's "artwork" key 
 function submitArtwork(){
@@ -107,7 +124,11 @@ function displayGuide(data){
 }
 
 // *Canvas* ||submit button|| is clicked and user's "artwork", "name" POSTs to SEQUENCE endpoint's "drawn-frames" and "credits" keys 
+function exportFrame(){
+	$('#submit-image').on('click', function(){
 
+	})
+}
 // *Canvas* POSTs to endpoint (Used for image on SEQUENCE and USER endpoints and ||title input|| to USER endpoint) 
 
 
@@ -120,13 +141,32 @@ function getAnimationID(){
  
 
 // *User Profile Settings* || Delete My Account || button is clicked and:
+function deleteSelected(){
+	$('#deleteAccountBtn').on('click', function(){
+		const deletedUser = getUsername();
+		deleteUser(deletedUser);
+		anomymizeUser(deletedUser);
+	}
+}
 
+function getAndDisplayUsername(){
+	getUsername(displayUsername);
 	// *User Profile Settings* GETs username from User endpoint
+}
+function getUsername(callback){
+	setTimeout(function(){ callback(MOCK_USER_UPDATES)}, 100);
+}
 
+function displayUsername(data){
+	$('#userHeader').text(data.username);
 	// *User Profile Settings* DELETEs user from USER AUTH and USER endpoints
-
+}
+function deleteUser(user){
+}
 	// *User Profile Settings* anonymizes user name from SEQUENCE Endpoint
+function anonymizeUser(user){
 
+}
 // *User Dashboard* GETs random image from USER endpoint and posts as icon for ||My Work|| in --Pick Art-- screen
 function getAndDisplayThumb(){
 	function getThumb(displayThumb());
@@ -141,8 +181,14 @@ function displayThumb(data){
 		`<img src="${data.artwork.image}"></img>
 		<p>${data.artwork.title}</p>`);
 }
-// *User Dashboard* GETs random image from SEQUENCE endpoint and posts as icon for ||My Work|| in --Pick Art-- screen
 
 //Canvas plays what the animation looks like up till the user's slide? 
+function renderTheatre(data){
+	sequence = getSequence(data);
+
+}
 
 //*Animation Showcase* GETs image sequence and posts in canvas players? made in p5.js
+function getSequence(){
+	return 
+}
