@@ -4,6 +4,6 @@ deploy:
   provider: heroku
   api_key:
     secure: tR4ee9bK8G6SzaG0GK4/tXTDlQsG++ST5t15Hi1/xTpy1j4zD97r5B2xoCuJWzzlx1oaBb1JZTW53keA+TDgrZqbRPpv8ZKH+DWpJXZDmLOkrUCDguQUx9JGXpmjSGVKuXzKzVbV8I46jcZ4lWQlDD1y5LH2nq7y74tuWqIjxwD0Et9Qu16jtl0wdIRezfoV2JX+4vJYTPuCl9nHi2PSKqnUwOFx3ESJPNUshz46v4Z2RoxY8Ww4OGRu5FfAiZkiQL2tp/czJey4z8q+kDGQB4mxGFA2rz3vs26g7u24aK1N7fA5XIJl/DOlnzh2E+wI54avH89xbK7OSE91r+UzsKoHuyZhgMF7Um8lLTcbfz2A7ebXF5450kR5Ng73igCXn8WeJSL/Jp4dEO3eskePdyXpB7xAbdahdiSYpFX05G9cAjFpuRjbzIpK4npVN/D+7COXmQ5NDZ13BtEkPGpr8WEv8/bZDIYGN9qBq9s6bZsGz/mweN68Cz7lPO/qGQg8zQlR7QZbe+yWSqPomAIC4pTYq+3khJ6JiOdq43FrcfhJDdeS7Q/SNW0QACkVRMlIsTb52fyrk+qWux0riC8mNn1dc/RkzQv1H+/X4RL6rYrs7y3YCu5HHKyPpo3NArSc40k7pu4NW/ZYbrNq9uwQOQFiZzAz2j7Yiis3LSzZQso=
-  app: murmuring-plateau-90485
+  app: murmuring-plateau-90485 
   on:
     repo: ianmcdermott/art-app
