@@ -11,33 +11,35 @@ const MOCK_USER_UPDATES = {
 	"name": {
 		"firstName": 'First',
 		 "lastName": 'Last'},
- 	"id": "111111",
-	"artwork": [{
-		"image": "media/path/image.png",
-		"animation": "0001",
-		"title": "Hello World",
-		"date": "2015-03-25"
-	  }]
+ 	"id": "111111"
 }
 
 const MOCK_ANIMATION_UPDATES = {
 	"id":   "888888",
 	"title":  "Foo Fa",
-	"creation-date":  "2015-03-25",
+	"creationDate":  "2015-03-25",
 	"frame": "media/path/image.png"
+}
+
+const MOCK_USER_PROFILE_UPDATES = {
+    "username": "username",
+    "password":  "password"
+    "name": 'First Last',
+	"artwork": [{
+		"image": "media/path/image.png",
+		"animationId": "0001",
+		"title": "Hello World",
+		"date": "2015-03-25"
+	  }]
 }
 
 
 const MOCK_SEQUENCE_UPDATES = {
 	"id":   "111111",
 	"guide": ["media/path/image.png", "media/path/image.png", "media/path/image.png"]},
-	"user-drawn": ["media/path/image.png", "media/path/image.png", "media/path/image.png"],
+	"userDrawn": ["media/path/image.png", "media/path/image.png", "media/path/image.png"],
 	"credits": ["fakeUser1", "fakeUser2", "fakeUser3"]
 }
-
-
-
-// POSTs new user object at the USER endpoint 
 
 // *User Dashboard* GETs "name" data from USER endpoint and displays  
 function getAndDisplayName(callback){
@@ -82,22 +84,8 @@ function displayArtwork(data){
 }
 
 // *User Gallery* GETs "id" from ANIMATION endpoint and uses it to retrieve "drawn-frames" array from SEQUENCE endpoint 
-function getAnimationId(){
-	// const settings = {
-	// 	url: '../api/animation',
-	// 	dataType: 'json',
-	// 	type: 'GET',
-	// 	success: callback
-	// }
-	// .ajax(settings);
+function getAnimationId(callback){
 	setTimeout(callback(retrieveSequence), 100);
-}
-
-// Callback for User Gallery Gets frames using animation ID and displays in p5Js
-function retrieveSequence(data){
-	//render theatre show in theatre div
-	//$('#theatre').html(theatre.js)
-
 }
 
 // *Canvas* ||submit button|| is clicked and user's "artwork", "title", "creation date" POSTs to USER endpoint's "artwork" key 
@@ -133,12 +121,16 @@ function exportFrame(){
 
 
 // *Canvas* GETs "animationID" from ANIMATION endpoint and uses it to match "ID" found in sequence endpoint and POST to "drawn-frames" and "credits" keys 
-function getAnimationID(){
+function getAnimationID(callback){
+	setTimeout(function(){callback()}, 100);
+}
 
+function returnAnimationId(data){
+	return data.id;
 }
 
 // *Canvas* GETs animation ID to POST it to user's "artwork" key's "animationID" to endpoint (Used for image on SEQUENCE and USER endpoints and ||title input|| to USER endpoint) 
- 
+
 
 // *User Profile Settings* || Delete My Account || button is clicked and:
 function deleteSelected(){
@@ -149,46 +141,91 @@ function deleteSelected(){
 	}
 }
 
-function getAndDisplayUsername(){
-	getUsername(displayUsername);
-	// *User Profile Settings* GETs username from User endpoint
-}
-function getUsername(callback){
-	setTimeout(function(){ callback(MOCK_USER_UPDATES)}, 100);
-}
 
-function displayUsername(data){
-	$('#userHeader').text(data.username);
-	// *User Profile Settings* DELETEs user from USER AUTH and USER endpoints
-}
 function deleteUser(user){
+	setTimeout(function(){}, 100)
 }
-	// *User Profile Settings* anonymizes user name from SEQUENCE Endpoint
-function anonymizeUser(user){
 
+// *User Profile Settings* gets username from user profile endpoint and anonymizes user name from SEQUENCE Endpoint
+function anonymizeUser(user){
+	getUsername(updateUserCredits);
 }
+
+function updateUserCredits(data){
+	if(data.username = sequence.credits.username){
+		updateSequence.username;
+	}
+	$('#credits').html;
+}
+
+// *User Dashboard* GETs username, first/last name, and one random artwork to display on profile
+function renderDashboard(){
+	getAndDisplayThumb();
+	getAndDisplayUsername();
+	getAndDisplayName();
+}
+
 // *User Dashboard* GETs random image from USER endpoint and posts as icon for ||My Work|| in --Pick Art-- screen
 function getAndDisplayThumb(){
-	function getThumb(displayThumb());
+	getThumb(displayThumb);
 }
 
+//gets data from user profile endpoint
 function getThumb(){
-	setTimeout(callback(MOCK_USER_UPDATES));
+	setTimeout(callback(MOCK_USER_PROFILE_UPDATES));
 }
 
 function displayThumb(data){
 	$('displayDiv').append(
-		`<img src="${data.artwork.image}"></img>
-		<p>${data.artwork.title}</p>`);
+		`<img src="${data.artwork.image}" alt="${data.artwork.title}"></img>
+		<p class='artwork-title'>${data.artwork.title}</p>`);
 }
 
-//Canvas plays what the animation looks like up till the user's slide? 
-function renderTheatre(data){
-	sequence = getSequence(data);
+function getAndDisplayUsername(){
+	getUsername(displayUsername);
+}
 
+//get Username from User Profile endpoint
+function getUsername(callback){
+	setTimeout(function(){ callback(MOCK_USER_PROFILE_UPDATES)}, 100);
+}
+
+function renderUsername(data){
+	$('#usernameHeader').text(data.username);
+}
+
+function getAndDisplayName(){
+	getName(displayName);
+}
+
+function getName(callback){
+	setTimeout(function(){ callback(MOCK_USER_PROFILE_UPDATES)}, 100);
+}
+
+function renderName(data){
+	$('#nameHeader').text(data.name);
+}
+
+//gets sequence and renders to p5js theatre
+function getSequenceAndRender(){
+	const animationId = getAnimationID(returnAnimationId)
+	getSequence(animationId, renderTheatre);
 }
 
 //*Animation Showcase* GETs image sequence and posts in canvas players? made in p5.js
-function getSequence(){
-	return 
+function getSequence(requestedId, callback){
+	getSequence.forEach(item => {
+		if(item.id === requestedId){
+			setTimeout(function(){ callback(MOCK_SEQUENCE_UPDATES)})
+		}
+	})	
 }
+
+//Canvas plays what the animation looks like up till the user's slide? 
+//player created with p5js
+function renderTheatre(data){
+	sequence = data.userDrawn;
+	//import sequence data array into p5js code
+	// P5.JS CODE CODE CODE (sequence)
+}
+
