@@ -1,15 +1,15 @@
-var x = 0;
-var creamsicle = '#ffb241';
-var mint = '#39b876';
-var magenta = '#e32c7e';
+let x = 0;
+let creamsicle = '#ffb241';
+let mint = '#39b876';
+let magenta = '#e32c7e';
 let colorArray = [creamsicle, mint, magenta];
 let defaultSwatch = colorArray[0];
 
-var radius = 50;
-var fillColor = mint;
-var strokeColor = 255;
-var strokeOn = false;
-var fillOn = true;
+let radius = 50;
+let fillColor = mint;
+let strokeColor = 255;
+let strokeOn = false;
+let fillOn = true;
 let numColor = 3;
 let swatches = [];
 let brush;
@@ -25,7 +25,8 @@ function preload(){
 }
 
 function setup() {
-	createCanvas(1200, 1200);
+	let canvas  = createCanvas(800, 800);
+	canvas.parent('sketch-holder');
 	background(0);
 	noStroke();
 	fill(255);
@@ -208,12 +209,12 @@ class Brush{
 
 }
 
-class Eraser extends Brush{
-	constructor(_r, _c){
-		super(this.r) = _r;
-		super(this.c) = fill(255);
-	}
-}
+// class Eraser extends Brush{
+// 	constructor(_r, _c){
+// 		super(this.r) = _r;
+// 		super(this.c) = fill(255);
+// 	}
+// }
 
 //eraser function
 //export function - hook to submit button

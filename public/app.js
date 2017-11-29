@@ -1,6 +1,6 @@
 const MOCK_USER_AUTH_UPDATES = {
     "username": "username",
-    "password":  "password"
+    "password":  "password",
     "name": {
     	"first-name": 'First', 
     	"last-name": 'Last'}
@@ -23,7 +23,7 @@ const MOCK_ANIMATION_UPDATES = {
 
 const MOCK_USER_PROFILE_UPDATES = {
     "username": "username",
-    "password":  "password"
+    "password":  "password",
     "name": 'First Last',
 	"artwork": [{
 		"image": "media/path/image.png",
@@ -36,8 +36,8 @@ const MOCK_USER_PROFILE_UPDATES = {
 
 const MOCK_SEQUENCE_UPDATES = {
 	"id":   "111111",
-	"guide": ["media/path/image.png", "media/path/image.png", "media/path/image.png"]},
-	"userDrawn": ["media/path/image.png", "media/path/image.png", "media/path/image.png"],
+	"guide": "media/path/image.png",
+	"userDrawn": "media/path/image.png",
 	"credits": ["fakeUser1", "fakeUser2", "fakeUser3"]
 }
 
@@ -53,7 +53,7 @@ function getName(callback){
 
 //display username
 function displayName(data){
-	$('body').append(`<p>Hello ${concatename(data.name)}</p>`
+	$('body').append(`<p>Hello ${concatename(data.name)}</p>`);
 }
 
 //concatenates first/last name
@@ -90,7 +90,7 @@ function getAnimationId(callback){
 
 // *Canvas* ||submit button|| is clicked and user's "artwork", "title", "creation date" POSTs to USER endpoint's "artwork" key 
 function submitArtwork(){
-	$('#artworkSubmit').on('click', function(){
+	$('#js-artwork-submit').on('click', function(){
 		postArtworkData();
 		postSequenceData();
 	})
@@ -138,7 +138,7 @@ function deleteSelected(){
 		const deletedUser = getUsername();
 		deleteUser(deletedUser);
 		anomymizeUser(deletedUser);
-	}
+	});
 }
 
 
@@ -229,3 +229,18 @@ function renderTheatre(data){
 	// P5.JS CODE CODE CODE (sequence)
 }
 
+
+function handleCss(){
+	let sw = $('.square1').width();
+	console.log(sw);
+	$('.square1').css({'height':sw+'px'});
+	$('.square2').css({'height':sw+'px'});
+	$('.square1').css({'border-width':sw/10+'px'});
+	$('.square2').css({'border-width':sw/10+'px'});
+}
+
+function runApp(){
+	handleCss();
+}
+
+$(runApp)
