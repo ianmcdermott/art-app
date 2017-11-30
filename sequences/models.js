@@ -8,8 +8,8 @@ function StorageException(message) {
 const sequenceSchema = mongoose.Schema({
   name: {type: String, required: true},
   // Frame Images are loaded from media folder, arrays contain their locations
-  guide: [{type: String}],
-  userDrawn: [{type: String}],
+  guide: {type: String, required: true},
+  userDrawn: {type: String},
   credits: [{type: String}],
 });
 

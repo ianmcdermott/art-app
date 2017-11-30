@@ -25,8 +25,8 @@ function preload(){
 }
 
 function setup() {
-	let canvas  = createCanvas(800, 800);
-	canvas.parent('sketch-holder');
+	let canvas  = createCanvas(1200, 1200);
+	canvas.parent('js-sketch-holder');
 	background(0);
 	noStroke();
 	fill(255);

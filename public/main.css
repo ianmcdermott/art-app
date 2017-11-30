@@ -19,6 +19,8 @@ body {
 
 header{
 	text-align: center;
+	padding: 15px;
+	background-color: #555;
 }
 
 canvas {
@@ -27,17 +29,31 @@ canvas {
 }
 
 main{
-	background-color: #fff;
+	background-color: #aaa;
 	width: 80%;
 	margin: 0 auto;
-		position: relative;
-
+	position: relative;
 }
 
 footer{
 	clear: both;
 	padding: 15px;
 	text-align: center;
+}
+
+footer a{
+	padding: 10px;
+	font-size: 20px;
+}
+
+a:visited{
+	text-decoration: none;
+	color: #555;
+}
+
+form{
+	text-align: center;
+	padding: 15px;
 }
 
 #wrapper{
@@ -47,12 +63,32 @@ footer{
 	display: block;
 }
 
-#make-art{
+#js-user-info{
+	text-align: center;
+	margin: 15px;
+	font-size: 30px;
+
+}
+
+#js-make-art{
 	width: 50%;
 }
 
-#view-art{
+#js-view-art{
 
+}
+
+#dashboard-link{
+	float: right;
+	position: relative;
+}
+
+#js-sketch-holder{
+	width: 100%;
+}
+
+#js-instructions{
+	text-align: center;
 }
 
 .square1{
@@ -78,4 +114,9 @@ footer{
 	text-align: center;
 	float: left;
 	display: inline;
+}
+
+.square1 image, .square2 image{
+	margin: 0;
+	padding: 15px;
 }

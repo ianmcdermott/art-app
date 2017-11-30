@@ -27,20 +27,16 @@ function tearDownDB(){
 function seedAnimationData(){
 	console.info('Seeding database');
 	const seedData = [];
-	const guideImageArray = [];
-	const userDrawnArray = [];
 	const creditArray = [];
 
 	for(let i=1; i<= 10; i++){
 		for(let j = 0; j<10; j++){
-			guideImageArray.push(faker.image.imageUrl);
-			userDrawnArray.push(faker.image.imageUrl);
 			creditArray.push(faker.name.firstName + ' ' + faker.name.lastName);
 		}
 		seedData.push({
 			name: faker.company.bsNoun(),
-		    guide: guideImageArray,
-		    userDrawn: userDrawnArray,
+		    guide: faker.image.imageUrl,
+		    userDrawn: faker.image.imageUrl,
 		    credits: creditArray
 		});
 	}
@@ -95,8 +91,8 @@ describe('Sequences API resource', function(){
 					res.body.sequences.forEach(sequence =>{
 						sequence.should.a('object');
 						sequence.should.include.keys('id', 'name', 'guide', 'userDrawn', 'credits');
-						sequence.guide.should.be.a('array');
-						sequence.userDrawn.should.be.a('array');
+						sequence.guide.should.be.a('string');
+						sequence.userDrawn.should.be.a('string');
 						sequence.credits.should.be.a('array');
 					});
 					resSequence = res.body.sequences[0];
@@ -114,19 +110,15 @@ describe('Sequences API resource', function(){
 
 	describe('POST endpoint', function(){
 		it('Should add a new sequence', function(){
-			const guideImageArray = [];
-			const userDrawnArray = [];
 			const creditArray = [];
 			for(let j = 0; j<10; j++){
-				guideImageArray.push(faker.image.imageUrl);
-				userDrawnArray.push(faker.image.imageUrl);
 				creditArray.push(faker.name.firstName + ' ' + faker.name.lastName);
 			}
 
 			const newSequence = {
 				name: faker.company.bsNoun(),
-			    guide: guideImageArray,
-			    userDrawn: userDrawnArray,
+			    guide: faker.image.imageUrl,
+			    userDrawn: faker.image.imageUrl,
 			    credits: creditArray
 			}
 
@@ -140,16 +132,16 @@ describe('Sequences API resource', function(){
 					res.body.should.include.keys(
 						'id', 'name', 'guide', 'userDrawn', 'credits');
 					res.body.name.should.equal(newSequence.name);
-					// res.body.guide.should.equal(newSequence.guide);
-					// res.body.userDrawn.should.equal(newSequence.userDrawn);
+					res.body.guide.should.equal(newSequence.guide);
+					res.body.userDrawn.should.equal(newSequence.userDrawn);
 					// res.body.credits.should.equal(newSequence.credits);
 					res.body.id.should.not.be.null;
 					return Sequences.findById(res.body.id);
 				})
 				.then(function(sequence) {
 					sequence.name.should.equal(newSequence.name);
-					// sequence.guide.should.equal(newSequence.guide);
-					// sequence.userDrawn.should.equal(newSequence.userDrawn);
+					sequence.guide.should.equal(newSequence.guide);
+					sequence.userDrawn.should.equal(newSequence.userDrawn);
 					// sequence.credits.should.equal(newSequence.credits);
 				});
 		});
@@ -157,20 +149,16 @@ describe('Sequences API resource', function(){
 
 	describe('PUT endpoint', function(){
 		it('should update fields with new data', function(){
-			const guideImageArray = [];
-			const userDrawnArray = [];
 			const creditArray = [];
 
 			for(let j = 0; j<10; j++){
-				guideImageArray.push(faker.image.imageUrl);
-				userDrawnArray.push(faker.image.imageUrl);
 				creditArray.push(faker.name.firstName + ' ' + faker.name.lastName);
 			}
 
 			const update = {
 				name: faker.company.bsNoun(),
-			    guide: guideImageArray,
-			    userDrawn: userDrawnArray,
+			    guide: faker.image.imageUrl,
+			    userDrawn: faker.image.imageUrl,
 			    credits: creditArray
 			}
 

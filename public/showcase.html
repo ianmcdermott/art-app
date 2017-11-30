@@ -17,13 +17,13 @@
 
 </head>
 <body>
-	<div id="wrapper">
-		<header role="banner">Header</header>
+	<div id="wrapper" onload="renderShowcase();">
+		<header role="banner"><h1>Header</h1></header>
 		<main role="main">
-			<div id="userInfo"></div>
-			<div id="gallery-div">
-				<div class="gallery-item"></div>
-			</div>
+			<a id="dashboard-link" href="dashboard.html">User Dashboard</a>
+			<div id="js-user-info">User Name</div>
+			<div class="square1" id="js-animation-info"><h2>Animation Info</h2></div>
+			<div class="square2" id="js-theatre-holder"><h2>Animation</h2></div>
 		</main>
 		<footer role="contentinfo">
 			<a href="showcase.html">Showcase</a>
@@ -40,3 +40,4 @@
 
 </body>
 </html>
+
