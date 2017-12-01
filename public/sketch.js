@@ -18,6 +18,19 @@ let strokeI;
 let img;
 let pg;
 
+let drawing = [];
+let isDrawing = false;
+let releasedMouse = false;
+/*
+{drawing: [
+	{path: {
+		points: [array of points],
+		color: color
+		radius: radius
+	}
+
+]}
+*/
 function preload(){
 	pg = createGraphics(0, 0);
 	//guide image loads to graphics buffer to avoid being on same layer as drawn image
@@ -33,12 +46,19 @@ function setup() {
 	rect(100, 100, 1000, 1000);
 	brush = new Brush(50, defaultSwatch);
 
+	let submitButton = select('#js-artwork-submit');
+	let clearButton  = select('#js-artwork-clear');
+
+	//submitButton.mousePressed(saveDrawing);
+	//clearButton.mousePressed(clearDrawing);
 	//populate color swatches
 	createPallet();
 }
 
 function draw() {
+	//set guide image
 	image(img, 100, 100);
+	//set frame
 	frame();
 	renderPallet();
 	//brush.display(mouseX, mouseY);
@@ -75,14 +95,20 @@ function frame(){
 }
 
 function mouseDragged() {
+	isDrawing = true;
 	brush.drag(mouseX, mouseY);
 	//brush.update(mouseX, mouseY)
-	
-
 	return false;
 }
 
+function mouseReleased(){
+	releasedMouse = true;
+	isDrawing = false;
+}
+
 function mouseClicked(){
+	isDrawing = true;
+
 	for(let i = 0; i < numColor; i++){
 		swatches[i].clicked(mouseX, mouseY);
 	}
@@ -124,14 +150,10 @@ function ColorSwatch(_x, _y, _r, _c){
 
 	this.clicked = function(_x, _y){
 		let d = dist(_x, _y, this.x, this.y);
+		//if mouse is inside swatch, update brush and fill icon
 			if(d < this.r){
-				console.log("clicked on "+ this.c);
-				//if(strokeActive){
 				fillIcon.c = this.c 
 				brush.c = this.c;
-				//} else {
-					//fillIcon.c = this.c 
-			//	}
 		}
 	}
 }
@@ -169,10 +191,33 @@ class FillIcon extends Icon{
 	}
 }
 
+function handleDrawing(_x, _y){
+	if(isDrawing){
+		var point = {
+			x: mouseX,
+			y: mouseY
+		}
+	
+	points.push(point);
+	path.push({
+			coord:points,
+			color: brush.c,
+			radius: brush.r
+		});
+	}
+}
+
 class Brush{
  	constructor( _r, _c){
  		this.r = _r;
  		this.c = _c;
+  		this.path = {
+			points: [],
+			lines: [],
+			color: this.c,
+			radius: this.r
+		};
+		this.dragging = false;
  	}
 
 	display(x, y){
@@ -183,11 +228,33 @@ class Brush{
 	}
 
 	drag(_x, _y){
+		this.path.points = [];
+		this.path.lines = [];
 		let weight = this.r+constrain(dist(mouseX, mouseY, pmouseX, pmouseY), 0, 25);
 		constrain(80);
 		strokeWeight(weight);
 		stroke(this.c);
-		line(mouseX, mouseY, pmouseX, pmouseY)
+		line(mouseX, mouseY, pmouseX, pmouseY);
+		if(isDrawing){
+			this.path = {
+				points: [],
+				lines: [],
+				color: this.c,
+				radius: this.r
+			};
+			let lineCoords = {mouseX, mouseY, pmouseX, pmouseY};
+			//console.log(lineCoords);
+			this.path.lines.push(lineCoords);
+			console.log(this.path.lines);
+
+			this.path.color = this.c;
+			if(releasedMouse){
+				drawing.push(this.path);
+				console.log(drawing);
+				releasedMouse = false;
+			}
+		}
+		
 	}
 
 	click(_x, _y){
@@ -196,16 +263,40 @@ class Brush{
 		this.y = _y;
 		fill(this.c);
 		ellipse(this.x, this.y, this.r, this.r);
+		if(releasedMouse){
+			this.path.points.push(mouseX, mouseY);
+			drawing.push(this.path);
+			console.log(drawing);
+			releasedMouse = false;
+		}
 	}
 
 	sizeUp(amount){
 		console.log('sizing up');
 		this.r += amount;
+ 		this.path.radius = this.r;
 	}
 
 	sizeDown(amount){
 		this.r -= amount;
+		this.path.radius = this.r;
 	}
+
+}
+
+function saveDrawing(){
+	var ref = database.ref('drawings');
+	var data = {
+		frame: drawing
+	}
+	var result = ref.push(data, dataSent);
+
+	function dataSent(err, status){
+		console.log(status);
+	}
+}
+
+function clearDrawing(){
 
 }
 

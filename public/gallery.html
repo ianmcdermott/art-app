@@ -10,20 +10,22 @@
 	<script src="libraries/p5.js"></script>
 	<script src="libraries/p5.dom.js"></script>
 	<script src="libraries/p5.sound.js"></script>
-	<script src="sketch.js"></script>
 
 	<link href="meyerreset.css" rel="stylesheet" type="text/css">
 	<link href="main.css" rel="stylesheet" type="text/css">
 
 </head>
 <body onload="renderGallery();">
-	<div id="wrapper" onload="renderGallery">
+	<div id="wrapper" >
 		<header role="banner"><h1>Header</h1></header>
 		<main role="main">
-			<div id="js-artwork-info"></div>
-			<div class="square1" id="js-artwork-thumb"></div>
-			<div id="js-animation-info"></div>
-			<div class="square2" id="js-animation-thumb"></div>
+		<a id="dashboard-link" href="dashboard.html">User Dashboard</a>
+			<div class="square1" id="js-artwork-thumb">
+				<div id="js-artwork-info"></div>
+			</div>
+			<div class="square2" id="js-animation-thumb">
+				<div id="js-animation-info"></div>
+			</div>
 		</main>
 		<footer role="contentinfo">
 			<a href="showcase.html">Showcase</a>
@@ -39,3 +41,4 @@
 
 </body>
 </html>
+

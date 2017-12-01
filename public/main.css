@@ -63,7 +63,7 @@ form{
 	display: block;
 }
 
-#js-user-info{
+#js-user-header{
 	text-align: center;
 	margin: 15px;
 	font-size: 30px;
@@ -81,14 +81,35 @@ form{
 #dashboard-link{
 	float: right;
 	position: relative;
+	display: block;
+	width: 100%;
 }
 
 #js-sketch-holder{
 	width: 100%;
 }
 
+#js-animation-info{
+	display: block;
+	text-align: center;
+}
+
+#js-animation-info p{
+	display: block;
+	text-align: center;
+}
+
 #js-instructions{
 	text-align: center;
+}
+
+#js-view-art{
+	text-align: center;
+}
+
+#js-view-art image{
+	text-align: center;
+	max-width: 20%;
 }
 
 .square1{

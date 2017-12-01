@@ -10,19 +10,18 @@
 	<script src="libraries/p5.js"></script>
 	<script src="libraries/p5.dom.js"></script>
 	<script src="libraries/p5.sound.js"></script>
-	<script src="sketch.js"></script>
 
 	<link href="meyerreset.css" rel="stylesheet" type="text/css">
 	<link href="main.css" rel="stylesheet" type="text/css">
 
 </head>
-<body>
+<body onload="renderGalleryAndShowcase();">
 	<div id="wrapper">
 		<header role="banner"><h1>Header</h1></header>
 		<main role="main">
 			<div id="userInfo">User Name</div>
-			<div class="square1" id="js-view-gallery"><a href="gallery.html"><h2>My Work</h2></a></div>
-			<div class="square2" id="js-view-showcase"><a href="showcase.html"><h2>All Work</h2></a></div>
+			<div class="square1" id="js-artwork-thumb"><a href="gallery.html"><h2>My Work</h2></a></div>
+			<div class="square2" id="js-showcase-thumb"><a href="showcase.html"><h2>All Work</h2></a></div>
 		</main>
 		<footer role="contentinfo">
 			<a href="showcase.html">Showcase</a>

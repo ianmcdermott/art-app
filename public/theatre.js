@@ -6,19 +6,21 @@ let currentFrame = 0;
 	for(let i = 0; i < numFrames; i++){
 		let imageName = 'https://raw.githubusercontent.com/ianmcdermott/art-app/master/public/media/sequences/flowerGuide_'+(('00000' + i).slice(-5))+'.png';
 		images[i] = loadImage(imageName);
-		console.log(imageName);
 	}
  }
 
 function setup(){
-	let canvas = createCanvas(1200, 1200);
+	let canvas = createCanvas(500, 500);
 	frameRate(24);
-	canvas.parent('theatre-holder');
+	canvas.parent('js-theatre-holder');
 }
 
 function draw(){
 	background(0);
-	image(images[currentFrame], 0, 0);
+		//images.size(50%);
+	//let container = this.parent();
+	//console.log('contain = ' +container);
+	image(images[currentFrame], 0, 0, 500, 500);
 	currentFrame++;
 	if(currentFrame == images.length) currentFrame = 0;
 }
