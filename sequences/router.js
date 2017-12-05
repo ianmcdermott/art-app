@@ -41,7 +41,7 @@ router.get('/:id', (req, res) =>{
 });
 
 router.post('/', (req, res) =>{
-	const requiredFields = ['name', 'guide', 'userDrawn', 'credits'];
+	const requiredFields = ['title', 'guide', 'userDrawn', 'lastDrawn'];
 	for(let i=0; i < requiredFields.length; i++){
 		const field = requiredFields[i];
 		if (!(field in req.body)) {
@@ -53,7 +53,7 @@ router.post('/', (req, res) =>{
 
 	Sequences
 		.create({
-			name: req.body.name,
+			title: req.body.title,
 			guide: req.body.guide,
 			userDrawn: req.body.userDrawn,
 			credits: req.body.credits
@@ -70,13 +70,13 @@ router.put('/:id', (req, res) => {
 	if(!(req.params.id && req.body.id && req.params.id === req.body.id)){
 		const message = (
 			`Request path id (${req.params.id}) and request body id ` +
-			`(${req.body.title}) must match`);
+			`(${req.body.id}) must match`);
 		console.error(message);
 		return res.status(400).json({message: message});
 	}
 
 	const toUpdate = {};
-	const updateableFields = ['name', 'guide', 'userDrawn', 'credits'];
+	const updateableFields = ['title', 'guide', 'userDrawn', 'lastDrawn'];
 
 	updateableFields.forEach(field => {
 		if(field in req.body){

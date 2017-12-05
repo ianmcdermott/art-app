@@ -16,13 +16,13 @@
 	<script src="libraries/p5.sound.js"></script>
 	<script src="app.js" type="text/javascript"></script>
 	<script src="sketch.js" type="text/javascript"></script>
-	
+
 	<link href="meyerreset.css" rel="stylesheet" type="text/css">
 	<link href="main.css" rel="stylesheet" type="text/css">
 
 
 </head>
-<body>
+<body onload="prepCanvas();">
 	<div id="wrapper">
 		<header role="banner">Header</header>
 		<main role="main">
@@ -34,11 +34,12 @@
 				<p>1. Draw a flower head inside the blue circle</p>
 			</div>
 			<div id="js-sketch-holder"></div>
-			<form action="pick.html">
-				<input type="text" name="Title" value="Title" id="js-title-form">
-				<input type="submit" value="Submit" id="js-artwork-submit">
-				<button id="js-artwork-clear">Clear</button>
+			<form id="js-artwork-form" action="pick.html" onsubmit="submitArtwork(); return false;">
+				<input type="text" name="Title" placeholder="Title" id="js-title-form">
+				<input type="submit" value="Submit Art" id="js-artwork-submit">
+				
 			</form>
+			<button id="js-artwork-clear">Clear</button>
 		</main>
 		<footer role="contentinfo">
 			<a href="showcase.html">Showcase</a>

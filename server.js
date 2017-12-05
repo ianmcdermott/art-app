@@ -10,7 +10,10 @@ const {router: usersRouter} = require('./users');
 const {router: authRouter, localStrategy, jwtStrategy} = require('./auth');
 const {router: sequenceRouter} = require('./sequences');
 const {router: animationRouter} = require('./animations');
-const {router: userProfileRouter} = require('./userprofile')
+const {router: userProfileRouter} = require('./userprofile');
+const {router: creditsRouter} = require('./credits');
+const {router: userdrawnRouter} = require('./userdrawn');
+// const {router: guideRouter} = require('./guide');
 mongoose.Promise = global.Promise;
 
 const {PORT, DATABASE_URL} = require('./config');
@@ -39,6 +42,9 @@ app.use('/api/auth/', authRouter);
 app.use('/sequences', sequenceRouter);
 app.use('/animations', animationRouter);
 app.use('/userprofile', userProfileRouter);
+app.use('/credits', creditsRouter);
+app.use('/userdrawn', userdrawnRouter);
+// app.use('/guide', userProfileRouter);
 
 const jwtAuth = passport.authenticate('jwt', {session: false});
 

@@ -6,22 +6,24 @@ function StorageException(message) {
 }
 
 const sequenceSchema = mongoose.Schema({
-  name: {type: String, required: true},
+  title: {type: String, required: true},
   // Frame Images are loaded from media folder, arrays contain their locations
   guide: {type: String, required: true},
-  userDrawn: {type: String},
-  credits: [{type: String}],
+  userDrawn: [{type: String, required: false}],
+  lastDrawn: {type: Date}
 });
+
+
 
 // when creating video player, may want virtual that will allow the arrays to add all content together? 
 
 sequenceSchema.methods.apiRepr = function(){
   return{
     id: this._id,
-    name: this.name,
+    title: this.title,
     guide: this.guide,
     userDrawn: this.userDrawn,
-    credits: this.credits
+    lastDrawn: this.lastDrawn
   };
 }  
 

@@ -1,70 +1,436 @@
-const MOCK_USER_AUTH_UPDATES = {
-    "username": "username",
-    "password":  "password",
-    "name": {
-    	"first-name": 'First', 
-    	"last-name": 'Last'}
-}
+	// let userD = [
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 603.5,
+ //                    "mouseY": 1099,
+ //                    "pmouseX": 605.5,
+ //                    "pmouseY": 1100
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 2.23606797749979
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 598.5,
+ //                    "mouseY": 1096,
+ //                    "pmouseX": 603.5,
+ //                    "pmouseY": 1099
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 5.8309518948453
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 595.5,
+ //                    "mouseY": 1093,
+ //                    "pmouseX": 598.5,
+ //                    "pmouseY": 1096
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 4.242640687119286
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 593.5,
+ //                    "mouseY": 1091,
+ //                    "pmouseX": 595.5,
+ //                    "pmouseY": 1093
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 2.8284271247461903
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 592.5,
+ //                    "mouseY": 1089,
+ //                    "pmouseX": 593.5,
+ //                    "pmouseY": 1091
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 2.23606797749979
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 590.5,
+ //                    "mouseY": 1086,
+ //                    "pmouseX": 592.5,
+ //                    "pmouseY": 1089
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 3.6055512754639896
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 589.5,
+ //                    "mouseY": 1081,
+ //                    "pmouseX": 590.5,
+ //                    "pmouseY": 1086
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 5.099019513592785
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 589.5,
+ //                    "mouseY": 1079,
+ //                    "pmouseX": 589.5,
+ //                    "pmouseY": 1081
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 2
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 589.5,
+ //                    "mouseY": 1078,
+ //                    "pmouseX": 589.5,
+ //                    "pmouseY": 1079
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 1
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 589.5,
+ //                    "mouseY": 1075,
+ //                    "pmouseX": 589.5,
+ //                    "pmouseY": 1078
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 3
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 589.5,
+ //                    "mouseY": 1073,
+ //                    "pmouseX": 589.5,
+ //                    "pmouseY": 1075
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 2
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 589.5,
+ //                    "mouseY": 1069,
+ //                    "pmouseX": 589.5,
+ //                    "pmouseY": 1073
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 4
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 594.5,
+ //                    "mouseY": 1053,
+ //                    "pmouseX": 589.5,
+ //                    "pmouseY": 1069
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 16.76305461424021
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 595.5,
+ //                    "mouseY": 1050,
+ //                    "pmouseX": 594.5,
+ //                    "pmouseY": 1053
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 3.1622776601683795
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 597.5,
+ //                    "mouseY": 1047,
+ //                    "pmouseX": 595.5,
+ //                    "pmouseY": 1050
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 3.6055512754639896
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 598.5,
+ //                    "mouseY": 1044,
+ //                    "pmouseX": 597.5,
+ //                    "pmouseY": 1047
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 3.1622776601683795
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 599.5,
+ //                    "mouseY": 1041,
+ //                    "pmouseX": 598.5,
+ //                    "pmouseY": 1044
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 3.1622776601683795
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 600.5,
+ //                    "mouseY": 1038,
+ //                    "pmouseX": 599.5,
+ //                    "pmouseY": 1041
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 3.1622776601683795
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 602.5,
+ //                    "mouseY": 1035,
+ //                    "pmouseX": 600.5,
+ //                    "pmouseY": 1038
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 3.6055512754639896
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 603.5,
+ //                    "mouseY": 1033,
+ //                    "pmouseX": 602.5,
+ //                    "pmouseY": 1035
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 2.23606797749979
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 608.5,
+ //                    "mouseY": 1026,
+ //                    "pmouseX": 603.5,
+ //                    "pmouseY": 1033
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 8.602325267042627
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 609.5,
+ //                    "mouseY": 1024,
+ //                    "pmouseX": 608.5,
+ //                    "pmouseY": 1026
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 2.23606797749979
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 611.5,
+ //                    "mouseY": 1022,
+ //                    "pmouseX": 609.5,
+ //                    "pmouseY": 1024
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 2.8284271247461903
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 612.5,
+ //                    "mouseY": 1020,
+ //                    "pmouseX": 611.5,
+ //                    "pmouseY": 1022
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 2.23606797749979
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 614.5,
+ //                    "mouseY": 1018,
+ //                    "pmouseX": 612.5,
+ //                    "pmouseY": 1020
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 2.8284271247461903
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 615.5,
+ //                    "mouseY": 1016,
+ //                    "pmouseX": 614.5,
+ //                    "pmouseY": 1018
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 2.23606797749979
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 616.5,
+ //                    "mouseY": 1015,
+ //                    "pmouseX": 615.5,
+ //                    "pmouseY": 1016
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 1.4142135623730951
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 617.5,
+ //                    "mouseY": 1012,
+ //                    "pmouseX": 615.5,
+ //                    "pmouseY": 1016
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 4.47213595499958
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 619.5,
+ //                    "mouseY": 1009,
+ //                    "pmouseX": 617.5,
+ //                    "pmouseY": 1012
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 3.6055512754639896
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 620.5,
+ //                    "mouseY": 1006,
+ //                    "pmouseX": 619.5,
+ //                    "pmouseY": 1009
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 3.1622776601683795
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 621.5,
+ //                    "mouseY": 1004,
+ //                    "pmouseX": 620.5,
+ //                    "pmouseY": 1006
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 2.23606797749979
+ //        },
+ //        {
+ //            "points": [],
+ //            "lines": [
+ //                {
+ //                    "mouseX": 622.5,
+ //                    "mouseY": 1001,
+ //                    "pmouseX": 621.5,
+ //                    "pmouseY": 1004
+ //                }
+ //            ],
+ //            "color": "#39b876",
+ //            "radius": 3.1622776601683795
+ //        }
+ //    ];
 
+let drawing = [];
+frameCount = 0;
 
-const MOCK_USER_UPDATES = {
-	"name": {
-		"firstName": 'Blorp',
-		"lastName": 'Bloop'},
- 	"id": "111111"
-}
-
-const MOCK_ANIMATION_UPDATES = {
-	"id":   "888888",
-	"title":  "Foo Fa",
-	"creationDate":  "2015-03-25",
-	"frame": "media/sequences/flowerGuide_00103.png"
-}
-
-const MOCK_USER_PROFILE_UPDATES = {
-    "username": "username",
-    "password":  "password",
-    "name": 'First Last',
-	"artwork": [{
-		"image": "00001",
-		"animationId": "0001",
-		"title": "Hello World",
-		"date": "2015-03-25"
-	  }]
-};
-
-
-const MOCK_SEQUENCE_UPDATES = {
-	"id":   "111111",
-	"title": "Flower",
-	"guide": "media/sequences/flowerGuide_",
-	"userDrawn": "media/sequences/flowerGuide_",
-	"credits": ["fakeUser1", "fakeUser2", "fakeUser3"],
-	"creationDate": "date"
-};
-
-const currentFrame 
+const testUserID = '5a20e3f4c270315d5facdca3';
 
 const DATABASE_URL = "http://localhost:8080/";
 
-const GUIDE_URL = 'media/sequences/';
-const KEYWORD_URL = 'flowerGuide_';
+let GUIDE_URL = 'media/sequences-frames/flowerGuide_';
+const NUMBER_EXTENSION = '00001.png'
+const testAnimationId = '5a1ee44fc270315d5f98e947';
+let sequenceId = "5a24a1cec270315d5fca2021";
+let userDrawing;
 
-// *User Dashboard* GETs "name" data from USER endpoint and displays  
-function getAndDisplayName(callback){
-	getName(dispayName);
-}
-
-// GETs user's name  
-function getName(callback){
-	setTimeout(callback(MOCK_USER_UPDATES), 100);
-}
-
-//display username
-function displayName(data){
-	$('body').append(`<p>Hello ${concatename(data.name)}</p>`);
-}
-
+// const imageSketch = require("./image")
 //concatenates first/last name
 function concatename(name){
 	return `${name.first-name} ${name.last-name}`
@@ -93,7 +459,7 @@ function displayArtwork(data){
 	let title = data.title;
 	let date = data.date;
 	$('body').append(
-		`<img src="${artwork}" alt="${title}">
+		`<div id="js-image-holder"></div>
 		<p>${title}</p>
 		<p class="subtle">${date}</p>`
 		)
@@ -104,13 +470,6 @@ function getAnimationId(callback){
 	setTimeout(callback(retrieveSequence), 100);
 }
 
-// *Canvas* ||submit button|| is clicked and user's "artwork", "title", "creation date" POSTs to USER endpoint's "artwork" key 
-function submitArtwork(){
-	$('#js-artwork-submit').on('click', function(){
-		postArtworkData();
-		postSequenceData();
-	})
-}
 
 // *Canvas* load guide image for the canvas and display canvas from sketch.js file
 function displayCanvas(guideImage){
@@ -118,21 +477,49 @@ function displayCanvas(guideImage){
 	$('body').append(`<script src="sketch.js"></script>`)
 }
 
+function prepCanvas(){
+	GUIDE_URL = getGuide(returnGuide);
+	sequenceId = getAndReturnSequenceId();
+	//displayGuide(GUIDE_URL)
+}
+
+function getAndReturnSequenceId(){
+	getSequenceId(returnSequenceId)
+}
+
+function getSequenceId(callback){
+	const settings = {
+	 	contentType: "application/json",
+		url:  DATABASE_URL+`sequences`,
+		success: callback,
+		error: callback(null)//"Error getting playlist"
+	};
+	$.ajax(settings);
+}
+
+function returnSequenceId(data){
+	return data.sequences[0].id;
+}
+
 // *Canvas* GETs image for current guide from "guide image" key's array and displays through p5.js program
-function getGuideImage(callback){
-	setTimeout(callback(MOCK_SEQUENCE_UPDATES));
+function getGuide(callback){
+	const settings = {
+	 	contentType: "application/json",
+		url:  DATABASE_URL+`sequences`,
+		success: callback,
+		error: callback(null)//"Error getting playlist"
+	};
+	$.ajax(settings);
+}
+
+function returnGuide(data){
+	return data.sequences[0].guide;
 }
 
 function displayGuide(data){
-	return data['guide-frames'][data['drawn-frames'].length]
+	return data['guide-frames'][data['drawn-frames'].length];
 }
 
-// *Canvas* ||submit button|| is clicked and user's "artwork", "name" POSTs to SEQUENCE endpoint's "drawn-frames" and "credits" keys 
-function exportFrame(){
-	$('#submit-image').on('click', function(){
-
-	})
-}
 // *Canvas* POSTs to endpoint (Used for image on SEQUENCE and USER endpoints and ||title input|| to USER endpoint) 
 
 
@@ -191,10 +578,9 @@ function getSequence(requestedId, callback){
 
 function renderGallery(){
 	getAndRenderArtworkThumb();
-	getAndRenderAnimationThumb();
-	getAndRenderArtworkInfo();
-	getAndRenderAnimationInfo();
-
+//	getAndRenderAnimationThumb();
+//	getAndRenderArtworkInfo();
+//	getAndRenderAnimationInfo();
 }
 
 function getAndRenderArtworkThumb(){
@@ -203,8 +589,9 @@ function getAndRenderArtworkThumb(){
 
 
 function getArtworkThumb(callback){
+	console.log('getArtworkThumb ran');
 	const settings = {
-		url:  DATABASE_URL+`userprofile`,
+		url:  DATABASE_URL+`userdrawn`,
 		success: callback,
 		error: "Error getting userprofile info"
 	};
@@ -213,11 +600,16 @@ function getArtworkThumb(callback){
 }
 
 function renderArtworkThumb(data){
-	const source = GUIDE_URL + KEYWORD_URL + data.userProfile[0].artwork[0].frame + '.png';
+	console.log('renderArtworkThumb ran');
+	
+	
+	userDrawing = data.userdrawn[3].frame;
+	new p5(imageSketch);
 	$('#js-artwork-thumb').prepend(
-			`<img src="${source}" alt="${data.userProfile[0].artwork[0].title}" width=80%>
-			 <p class='js-artwork-title'>${data.userProfile[0].artwork[0].title}</p>`);
+			`<div class="js-image-holder"></div>
+			 `);	
 }
+//<p class='js-artwork-title'>${data.userProfile[0].artwork[0].title}</p>
 
 
 function getAndRenderArtworkInfo(){
@@ -230,7 +622,6 @@ function getArtworkInfo(callback){
 		success: callback,
 		error: "Error getting userprofile info"
 	};
-
 	$.ajax(settings);
 }
 
@@ -295,15 +686,40 @@ function getAndRenderUsername(){
 	console.log('getAndRenderUsername ran');
 	getUsername(renderUsername);
 }
+
+function getAndReturnUsername(){
+	getUsername(returnUsername);
+}
+
+function getAndReturnUserID(){
+	getUsername(returnUserID);
+}
+
 function getUsername(callback){
 	console.log('getUsername running');
-	callback(MOCK_USER_UPDATES);
+	const settings = {
+		url:  DATABASE_URL+`userprofile`,
+		success: callback,
+		error: "Error getting userprofile info"
+	};
+
+	$.ajax(settings);
+	//callback(MOCK_USER_UPDATES);
 }
 
 function renderUsername(data){
 	console.log('renderUsername running');
-	$('#js-user-header').html(`<p>Welcome ${data.name.firstName} ${data.name.lastName}`);
+	$('#js-user-header').html(`<p>Welcome ${data.userProfile[0].name}`);
 }
+
+function returnUsername(data){
+	return data.userProfile[0].name;
+}
+
+function returnUserID(data){
+	return data.userProfile[0].id;
+}
+
 
 function getAndRenderUserInfo(){
 	console.log('getAndRenderUserInfo running');
@@ -311,8 +727,14 @@ function getAndRenderUserInfo(){
 }
 
 function getUserInfo(callback){
-	console.log('getUserInfo running');
-	setTimeout(function(){ callback(MOCK_USER_UPDATES)}, 100);
+	console.log('getUsername running');
+	const settings = {
+		url:  DATABASE_URL+`userprofile`,
+		success: callback,
+		error: "Error getting userprofile info"
+	};
+
+	$.ajax(settings);
 }
 
 function renderUserInfo(data){
@@ -327,10 +749,6 @@ function getAndRenderUserArt(){
 
 
 function getUserArt(callback){
-	//callback success
-	//setTimeout(callback(MOCK_USER_PROFILE_UPDATES), 100);
-	//callback fail with null as value
-	//callback(null)
 	const settings = {
 	 	contentType: "application/json",
 		url:  DATABASE_URL+`userprofile`,
@@ -344,7 +762,7 @@ function getUserArt(callback){
 function renderUserArt(data){
 	let boxWidth = $('#js-view-art').width()
 	if(data){
-	const source = GUIDE_URL + KEYWORD_URL + data.userProfile[0].artwork[0].frame + '.png';
+	const source = GUIDE_URL +  data.userProfile[0].artwork[0].frame + '.png';
 	$('#js-artwork-thumb').prepend(
 			`<img src="${source}" alt="${data.userProfile[0].artwork[0].title}" width=80%>
 			 <p class='js-artwork-title'>${data.userProfile[0].artwork[0].title}</p>`);
@@ -352,78 +770,158 @@ function renderUserArt(data){
 }
 
 function listenForArtworkSubmit(){
-	$('#js-artwork-submit').on('click', () => {
-		submitTitle();
+	$('#js-artwork-form').submit(function(event){
+		event.preventDefault();
 		submitArtwork();		
 	});
 }
 
-function submitTitle(){
-	let title = $('js-title-form').val();
-	postTitle();
-}
 
 function submitArtwork(){
-	postArtwork();
+	let title = $('#js-title-form').val();
+	let username = getAndReturnUsername();
+
+	//get the username
+	let userID = testUserID;//getAndReturnUsername();
+	let animationId = testAnimationId;//getAndReturnAnimationID();
+	//putArtworkUserProfile(console.log("PUT "+drawing), userID, title, animationId);
+	//putArtworkAnimations(console.log("PUTTing "+ drawing), animationId);
+//	postArtworkSequences(console.log("PUT "+ drawing), testUserID, title);
+	postArtworkUserDrawn(username);
+	//postArtworkCredits(testUserID);
 }
 
 // get current frame number of sequence
 
 // stringify frame number
 
-//PUT new art on user profile
-function putArtwork(){
-	function createPlaylist(callback){
-		var url = DATABASE_URL + 'sequences';
-		$.ajax(url, {
-			method: 'PUT',
+function postArtworkCredits(username){
+	console.log(username);
+	console.log('postArtworkCredits ran');	
+	const settings = {
+		url: DATABASE_URL + 'credits/' + sequenceId,
+		method: 'PUT',
 			data: JSON.stringify({
-				"frame": "00000",
-	            "animationId": "000001",
-	            "title": "Rising Seedling",
-	            "creationDate": "11-29-2017"
+				"id": sequenceId,
+				"name": username
 			}),
 			dataType: 'json',
 			headers: {
-				'Authorization': 'Bearer ' + AUTHORIZATION_CODE,
 				'Content-Type': 'application/json'
 			},
-			success: function(data) {
-				callback(data, openPlaylist);
-			},
-			error: function(data) {
-				callback(null);
-			}
-		});
-}
-	setTimeout(callback)
+			success: console.log('success PUT userdrawn'),
+			error: console.error('PUT drawing error')		
+	};
+	$.ajax(settings);
+	return false;
 }
 
-//POST artwork to sequences endpoint
-function postArtwork(){
-	function createPlaylist(callback){
-		var url = DATABASE_URL + 'sequences';
-		$.ajax(url, {
-			method: 'POST',
+function postArtworkUserDrawn(testUserID){
+	console.log(sequenceId +":::"+ drawing);
+	console.log('postArtworkUserDrawn ran');	
+	const settings = {
+		url: DATABASE_URL + 'userdrawn/' + sequenceId,
+		method: 'PUT',
 			data: JSON.stringify({
-				'name': 'Metly: A ' + desiredMood + " Journey to " + toStation,
-				'public': false
+				"id": sequenceId,
+				"frameNumber": frameCount,
+				"frame": drawing
 			}),
 			dataType: 'json',
 			headers: {
-				'Authorization': 'Bearer ' + AUTHORIZATION_CODE,
 				'Content-Type': 'application/json'
 			},
-			success: function(data) {
-				callback(data, openPlaylist);
+			success: console.log('success PUT userdrawn'),
+			error: console.error('PUT drawing error')		
+	};
+	$.ajax(settings);
+	return false;
+}
+
+//PUT new art on user profile to update image for thumbnail display purposes
+function putArtworkUserProfile(callback, userID, artworkTitle, animationId){
+	console.log('putArtwork ran');	
+	const settings = {
+		url: DATABASE_URL + 'userprofile/' + userID,
+		method: 'PUT',
+			data: JSON.stringify({
+				"id": userID,
+				"artwork": [{
+					"frame": drawing,
+		            "animationId": animationId,
+		            "title": artworkTitle,
+		            "creationDate": new Date()
+	            }]
+			}),
+			dataType: 'json',
+			headers: {
+				'Content-Type': 'application/json'
 			},
-			error: function(data) {
-				callback(null);
-			}
-		});
+			success: function(){
+				callback;
+			},
+			error: console.error('PUT drawing error')		
+	};
+	$.ajax(settings);
+	return false;
 }
-	setTimeout(callback)
+
+//PUT new art on animation to update image for thumbnail display purposes
+function putArtworkAnimations(callback, animationId){
+	console.log('putArtwork ran');	
+	const settings = {
+		url: DATABASE_URL + 'animations/' + animationId,
+		method: 'PUT',
+			data: JSON.stringify({
+				"id": userID,
+			//	"creationDate": new Date(),
+				"frame": drawing
+	            
+			}),
+			dataType: 'json',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			success: function(){
+				callback;
+			},
+			error: console.error('PUT Animation drawing error')		
+	};
+	$.ajax(settings);
+		return false;
+
 }
+
+//POST new art to sequences endpoint
+function postArtworkSequences(callback, userID, artworkTitle, animationId){
+	console.log('putArtwork ran');	
+	const settings = {
+		url: DATABASE_URL + 'userprofile/' + userID,
+		method: 'POST',
+			data: JSON.stringify({
+				"id": userID,
+				"artwork": [{
+					"frame": drawing,
+		            "animationId": animationId,
+		            "title": artworkTitle,
+		            "creationDate": new Date()
+	            }]
+			}),
+			dataType: 'json',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			success: function(){
+				callback;
+				console.log('success!');
+			},
+			error: console.error('PUT drawing error')		
+	};
+	$.ajax(settings);
+	return false;
+}
+
+
 
 function renderGalleryAndShowcase(){
 	getAndRenderArtworkThumb();
@@ -468,7 +966,62 @@ function runApp(){
 	handleCss();
 }
 
+// 1. POST frame to userdrawn
+// 2. GET frameId and animationId from userdrawn
+// 3. GET frames array based on animationId from sequences
+// 4. PUT newly appended frames back into sequences object
+
 $(runApp)
 
 //function that allows users to update their profile pic to any frame they've drawn, puts new frame item in userprofile artwork key
 
+///    p5 Image Maker ///
+new p5();
+let userD;
+
+let imageSketch = function(p){
+p.preload = function(){
+	userD = userDrawing;
+}
+
+p.setup = function() {
+		let canvas  = p.createCanvas(1200, 1200);
+		canvas.parent('#js-artwork-thumb');	
+		p.background(255, 0, 0);
+
+		p.displayDrawing();
+		noLoop();
+
+	}
+
+	p.displayDrawing = function(){
+		if(userDrawing){
+
+			for (let i = 0; i < userDrawing.length; i++) {
+
+		   		let lines = userDrawing[i].lines;
+		   		let points = userDrawing[i].points;
+				let weight = userDrawing[i].radius;
+
+				if(lines){
+					console.log(userD);
+
+					for(let j = 0; j < lines.length; j++){
+						let c = userDrawing[i].color;
+						p.strokeWeight(weight);
+						p.stroke(c);
+						p.line(lines[j].mouseX, lines[j].mouseY, lines[j].pmouseX, lines[j].pmouseY);
+					}
+				}
+				if(points){
+					for(let j = 0; j < points.length; j++){
+						let c = userDrawing[i].color;
+						p.noStroke();
+						p.fill(c);
+						p.ellipse(points[j].x, points[j].y, weight, weight);
+					}
+				}
+			}
+		}
+	}
+}

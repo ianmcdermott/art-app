@@ -4,7 +4,7 @@ let currentFrame = 0;
 
  function preload(){
 	for(let i = 0; i < numFrames; i++){
-		let imageName = 'https://raw.githubusercontent.com/ianmcdermott/art-app/master/public/media/sequences/flowerGuide_'+(('00000' + i).slice(-5))+'.png';
+		let imageName = 'https://raw.githubusercontent.com/ianmcdermott/art-app/master/public/media/sequences-frames/flowerGuide_'+(('00000' + i).slice(-5))+'.png';
 		images[i] = loadImage(imageName);
 	}
  }
@@ -24,3 +24,5 @@ function draw(){
 	currentFrame++;
 	if(currentFrame == images.length) currentFrame = 0;
 }
+
+function
