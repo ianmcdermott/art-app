@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 
 const animationSchema = mongoose.Schema({
     title: {type: String, required: true},
-    creationDate: {type: Date, required: true},
-    frame: [{
+    lastDrawnDate: {type: Date, required: true},
+    lastFrame: [{
         color: String,
         lines: [{
           mouseX: Number, 
@@ -18,6 +18,7 @@ const animationSchema = mongoose.Schema({
         }],
         radius: Number
     }],
+    frameCount: {type: Number, required: true}
 });
 
 //virtual for formatted date
@@ -29,8 +30,9 @@ animationSchema.methods.apiRepr = function(){
   return {
     id: this._id,
     title: this.title,
-    creationDate: this.creationDate,
-    frame: this.frame
+    lastDrawnDate: this.lastDrawnDate,
+    lastFrame: this.lastFrame,
+    frameCount: this.frameCount
   };
 }
 

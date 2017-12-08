@@ -1,439 +1,114 @@
-	// let userD = [
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 603.5,
- //                    "mouseY": 1099,
- //                    "pmouseX": 605.5,
- //                    "pmouseY": 1100
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 2.23606797749979
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 598.5,
- //                    "mouseY": 1096,
- //                    "pmouseX": 603.5,
- //                    "pmouseY": 1099
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 5.8309518948453
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 595.5,
- //                    "mouseY": 1093,
- //                    "pmouseX": 598.5,
- //                    "pmouseY": 1096
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 4.242640687119286
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 593.5,
- //                    "mouseY": 1091,
- //                    "pmouseX": 595.5,
- //                    "pmouseY": 1093
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 2.8284271247461903
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 592.5,
- //                    "mouseY": 1089,
- //                    "pmouseX": 593.5,
- //                    "pmouseY": 1091
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 2.23606797749979
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 590.5,
- //                    "mouseY": 1086,
- //                    "pmouseX": 592.5,
- //                    "pmouseY": 1089
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 3.6055512754639896
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 589.5,
- //                    "mouseY": 1081,
- //                    "pmouseX": 590.5,
- //                    "pmouseY": 1086
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 5.099019513592785
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 589.5,
- //                    "mouseY": 1079,
- //                    "pmouseX": 589.5,
- //                    "pmouseY": 1081
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 2
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 589.5,
- //                    "mouseY": 1078,
- //                    "pmouseX": 589.5,
- //                    "pmouseY": 1079
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 1
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 589.5,
- //                    "mouseY": 1075,
- //                    "pmouseX": 589.5,
- //                    "pmouseY": 1078
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 3
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 589.5,
- //                    "mouseY": 1073,
- //                    "pmouseX": 589.5,
- //                    "pmouseY": 1075
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 2
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 589.5,
- //                    "mouseY": 1069,
- //                    "pmouseX": 589.5,
- //                    "pmouseY": 1073
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 4
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 594.5,
- //                    "mouseY": 1053,
- //                    "pmouseX": 589.5,
- //                    "pmouseY": 1069
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 16.76305461424021
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 595.5,
- //                    "mouseY": 1050,
- //                    "pmouseX": 594.5,
- //                    "pmouseY": 1053
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 3.1622776601683795
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 597.5,
- //                    "mouseY": 1047,
- //                    "pmouseX": 595.5,
- //                    "pmouseY": 1050
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 3.6055512754639896
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 598.5,
- //                    "mouseY": 1044,
- //                    "pmouseX": 597.5,
- //                    "pmouseY": 1047
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 3.1622776601683795
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 599.5,
- //                    "mouseY": 1041,
- //                    "pmouseX": 598.5,
- //                    "pmouseY": 1044
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 3.1622776601683795
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 600.5,
- //                    "mouseY": 1038,
- //                    "pmouseX": 599.5,
- //                    "pmouseY": 1041
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 3.1622776601683795
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 602.5,
- //                    "mouseY": 1035,
- //                    "pmouseX": 600.5,
- //                    "pmouseY": 1038
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 3.6055512754639896
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 603.5,
- //                    "mouseY": 1033,
- //                    "pmouseX": 602.5,
- //                    "pmouseY": 1035
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 2.23606797749979
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 608.5,
- //                    "mouseY": 1026,
- //                    "pmouseX": 603.5,
- //                    "pmouseY": 1033
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 8.602325267042627
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 609.5,
- //                    "mouseY": 1024,
- //                    "pmouseX": 608.5,
- //                    "pmouseY": 1026
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 2.23606797749979
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 611.5,
- //                    "mouseY": 1022,
- //                    "pmouseX": 609.5,
- //                    "pmouseY": 1024
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 2.8284271247461903
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 612.5,
- //                    "mouseY": 1020,
- //                    "pmouseX": 611.5,
- //                    "pmouseY": 1022
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 2.23606797749979
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 614.5,
- //                    "mouseY": 1018,
- //                    "pmouseX": 612.5,
- //                    "pmouseY": 1020
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 2.8284271247461903
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 615.5,
- //                    "mouseY": 1016,
- //                    "pmouseX": 614.5,
- //                    "pmouseY": 1018
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 2.23606797749979
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 616.5,
- //                    "mouseY": 1015,
- //                    "pmouseX": 615.5,
- //                    "pmouseY": 1016
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 1.4142135623730951
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 617.5,
- //                    "mouseY": 1012,
- //                    "pmouseX": 615.5,
- //                    "pmouseY": 1016
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 4.47213595499958
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 619.5,
- //                    "mouseY": 1009,
- //                    "pmouseX": 617.5,
- //                    "pmouseY": 1012
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 3.6055512754639896
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 620.5,
- //                    "mouseY": 1006,
- //                    "pmouseX": 619.5,
- //                    "pmouseY": 1009
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 3.1622776601683795
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 621.5,
- //                    "mouseY": 1004,
- //                    "pmouseX": 620.5,
- //                    "pmouseY": 1006
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 2.23606797749979
- //        },
- //        {
- //            "points": [],
- //            "lines": [
- //                {
- //                    "mouseX": 622.5,
- //                    "mouseY": 1001,
- //                    "pmouseX": 621.5,
- //                    "pmouseY": 1004
- //                }
- //            ],
- //            "color": "#39b876",
- //            "radius": 3.1622776601683795
- //        }
- //    ];
+let imageSketch = function(p){
+	p.preload = function(){
+	}
 
+	p.setup = function() {
+			p.createCanvas(1200, 1200);
+			p.background(255, 0, 0);
+
+			p.displayDrawing();
+			p.noLoop();
+
+	}
+
+	p.displayDrawing = function(){
+		if(userDrawing){
+
+			for (let i = 0; i < userDrawing.length; i++) {
+
+		   		let lines = userDrawing[i].lines;
+		   		let points = userDrawing[i].points;
+				let weight = userDrawing[i].radius;
+
+				if(lines){
+
+					for(let j = 0; j < lines.length; j++){
+						let c = userDrawing[i].color;
+						p.strokeWeight(weight);
+						p.stroke(c);
+						p.line(lines[j].mouseX, lines[j].mouseY, lines[j].pmouseX, lines[j].pmouseY);
+					}
+				}
+				if(points){
+					for(let j = 0; j < points.length; j++){
+						let c = userDrawing[i].color;
+						p.noStroke();
+						p.fill(c);
+						p.ellipse(points[j].x, points[j].y, weight, weight);
+					}
+				}
+			}
+		}
+	}
+}
+
+let theatre = function(p){
+	let frameCount = 0;
+	p.preload = function(){
+	}
+
+	p.setup = function() {
+			let canvas  = p.createCanvas(1200, 1200);
+			canvas.parent('#js-theatre-holder');
+	}
+
+	p.draw = function(){
+		p.background(255, 0, 0);
+		p.displayDrawing(userTheatre[frameCount].frame);
+		frameCount++;
+		if(frameCount > userTheatre.length-1) frameCount = 0;
+	}
+
+	p.displayDrawing = function(frame){
+		if(userTheatre){
+			for (let i = 0; i < frame.length; i++) {
+
+		   		let lines = frame[i].lines;
+		   		let points = frame[i].points;
+				let weight = frame[i].radius;
+
+				if(lines){
+
+					for(let j = 0; j < lines.length; j++){
+						let c = frame[i].color;
+						p.strokeWeight(weight);
+						p.stroke(c);
+						p.line(lines[j].mouseX, lines[j].mouseY, lines[j].pmouseX, lines[j].pmouseY);
+					}
+				}
+				if(points){
+					for(let j = 0; j < points.length; j++){
+						let c = frame[i].color;
+						p.noStroke();
+						p.fill(c);
+						p.ellipse(points[j].x, points[j].y, weight, weight);
+					}
+				}
+			}
+		}
+	}
+}
+
+let userArtworkObject;
+frameC = 22;
 let drawing = [];
 frameCount = 0;
 
-const testUserID = '5a20e3f4c270315d5facdca3';
+const testUserID = '5a2590fac270315d5fd22294';
 
 const DATABASE_URL = "http://localhost:8080/";
 
 let GUIDE_URL = 'media/sequences-frames/flowerGuide_';
-const NUMBER_EXTENSION = '00001.png'
+const EXTENSION = '.png'
 const testAnimationId = '5a1ee44fc270315d5f98e947';
 let sequenceId = "5a24a1cec270315d5fca2021";
 let userDrawing;
+let userTheatre;
 
 // const imageSketch = require("./image")
 //concatenates first/last name
 function concatename(name){
-	return `${name.first-name} ${name.last-name}`
+	return `${name.first-name} ${name.last-name}`;
 } 
 
 //GETs and displays artwork for gallery page
@@ -465,11 +140,6 @@ function displayArtwork(data){
 		)
 }
 
-// *User Gallery* GETs "id" from ANIMATION endpoint and uses it to retrieve "drawn-frames" array from SEQUENCE endpoint 
-function getAnimationId(callback){
-	setTimeout(callback(retrieveSequence), 100);
-}
-
 
 // *Canvas* load guide image for the canvas and display canvas from sketch.js file
 function displayCanvas(guideImage){
@@ -478,8 +148,10 @@ function displayCanvas(guideImage){
 }
 
 function prepCanvas(){
-	GUIDE_URL = getGuide(returnGuide);
-	sequenceId = getAndReturnSequenceId();
+	populateUserArtworkObject();
+
+	//GUIDE_URL = getGuide(returnGuide);
+	//sequenceId = getAndReturnSequenceId();
 	//displayGuide(GUIDE_URL)
 }
 
@@ -576,40 +248,67 @@ function getSequence(requestedId, callback){
 	})	
 }
 
+// GET and return value of framecount in sequence object
+
 function renderGallery(){
 	getAndRenderArtworkThumb();
-//	getAndRenderAnimationThumb();
-//	getAndRenderArtworkInfo();
-//	getAndRenderAnimationInfo();
+	getAndRenderAnimationThumb();
+	getAndRenderArtworkInfo();
+	getAndRenderAnimationInfo();
 }
 
 function getAndRenderArtworkThumb(){
-	getArtworkThumb(renderArtworkThumb);
+	getArtwork(renderArtworkThumb);
 }
 
 
-function getArtworkThumb(callback){
+function getArtwork(callback){
 	console.log('getArtworkThumb ran');
 	const settings = {
 		url:  DATABASE_URL+`userdrawn`,
 		success: callback,
 		error: "Error getting userprofile info"
 	};
-
 	$.ajax(settings);
 }
 
 function renderArtworkThumb(data){
 	console.log('renderArtworkThumb ran');
-	
-	
+	//load user drawing into its own object to be more easily accessible in p5 code
 	userDrawing = data.userdrawn[3].frame;
-	new p5(imageSketch);
-	$('#js-artwork-thumb').prepend(
-			`<div class="js-image-holder"></div>
-			 `);	
+	new p5(imageSketch, "js-artwork-thumb");
 }
 //<p class='js-artwork-title'>${data.userProfile[0].artwork[0].title}</p>
+
+
+
+function getAndRenderAnimationThumb(){
+	getArtwork(renderAnimationThumb);
+}
+function renderAnimationThumb(data){
+	console.log('renderAnimationThumb ran');
+	let randomFrame = Math.floor(Math.random()*data.userdrawn.length); 
+	console.log("RF "+ randomFrame);
+	userDrawing = data.userdrawn[randomFrame].frame;
+	//load user drawing into its own object to be more easily accessible in p5 code
+	new p5(imageSketch, "js-theatre-thumb");
+}
+
+
+function getAndRenderAnimation(){
+	getArtwork(renderAnimation);
+}
+
+function renderAnimation(data){
+	console.log('renderAnimationThumb ran');
+	
+	//load user drawing into its own object to be more easily accessible in p5 code
+	userTheatre = data.userdrawn;
+	new p5(theatre);
+	$('#js-theatre-holder').prepend(
+			`<div class="js-theatre-holder"></div>
+	`);	
+}
 
 
 function getAndRenderArtworkInfo(){
@@ -634,7 +333,7 @@ function renderArtworkInfo(data){
 function renderShowcase(){
 	console.log('renderShowcase ran')
 	getAndRenderAnimationInfo();
-	getAndRenderTheatre();
+	getAndRenderAnimation();
 }
 
 function getAndRenderAnimationInfo(){
@@ -645,7 +344,7 @@ function getAndRenderAnimationInfo(){
 function getAnimationInfo(callback){
 	const settings = {
 		contentType: "application/json",
-		url:  DATABASE_URL+`animations`,
+		url:  DATABASE_URL+`animations`+testAnimationId,
 		success: callback,
 		error: "Error getting playlist"
 	};
@@ -659,71 +358,17 @@ function renderAnimationInfo(data){
 		<p>Last frame drawn on: ${data.animations[0].creationDate}</p>`);
 }
 
-function getAndRenderTheatre(){
-	getTheatre(renderTheatre);
-}
-
-function getTheatre(callback){
-	setTimeout(callback, 100);
-}
-//Canvas plays what the animation looks like up till the user's slide? 
-//player created with p5js
-function renderTheatre(data){
-	sequence = data.userDrawn;
-	//import sequence data array into p5js code
-	// P5.JS CODE CODE CODE (sequence)
-}
-
 // *User Dashboard* GETs username, first/last name, and one random artwork to display on profile
 function populateDashboard(){
 	console.log('populateDashboard running');
 	getAndRenderUsername();
 	getAndRenderUserInfo();
-	getAndRenderUserArt();
+	getAndRenderArtworkThumb();
 }
-
-function getAndRenderUsername(){
-	console.log('getAndRenderUsername ran');
-	getUsername(renderUsername);
-}
-
-function getAndReturnUsername(){
-	getUsername(returnUsername);
-}
-
-function getAndReturnUserID(){
-	getUsername(returnUserID);
-}
-
-function getUsername(callback){
-	console.log('getUsername running');
-	const settings = {
-		url:  DATABASE_URL+`userprofile`,
-		success: callback,
-		error: "Error getting userprofile info"
-	};
-
-	$.ajax(settings);
-	//callback(MOCK_USER_UPDATES);
-}
-
-function renderUsername(data){
-	console.log('renderUsername running');
-	$('#js-user-header').html(`<p>Welcome ${data.userProfile[0].name}`);
-}
-
-function returnUsername(data){
-	return data.userProfile[0].name;
-}
-
-function returnUserID(data){
-	return data.userProfile[0].id;
-}
-
 
 function getAndRenderUserInfo(){
 	console.log('getAndRenderUserInfo running');
-	getUsername(renderUserInfo);
+	getUserProfile(renderUserInfo);
 }
 
 function getUserInfo(callback){
@@ -735,6 +380,12 @@ function getUserInfo(callback){
 	};
 
 	$.ajax(settings);
+}
+
+
+function renderUsername(data){
+	console.log('renderUsername running');
+	$('#js-user-header').html(`<p>Welcome ${data.userProfile[0].name}`);
 }
 
 function renderUserInfo(data){
@@ -767,28 +418,6 @@ function renderUserArt(data){
 			`<img src="${source}" alt="${data.userProfile[0].artwork[0].title}" width=80%>
 			 <p class='js-artwork-title'>${data.userProfile[0].artwork[0].title}</p>`);
 	}
-}
-
-function listenForArtworkSubmit(){
-	$('#js-artwork-form').submit(function(event){
-		event.preventDefault();
-		submitArtwork();		
-	});
-}
-
-
-function submitArtwork(){
-	let title = $('#js-title-form').val();
-	let username = getAndReturnUsername();
-
-	//get the username
-	let userID = testUserID;//getAndReturnUsername();
-	let animationId = testAnimationId;//getAndReturnAnimationID();
-	//putArtworkUserProfile(console.log("PUT "+drawing), userID, title, animationId);
-	//putArtworkAnimations(console.log("PUTTing "+ drawing), animationId);
-//	postArtworkSequences(console.log("PUT "+ drawing), testUserID, title);
-	postArtworkUserDrawn(username);
-	//postArtworkCredits(testUserID);
 }
 
 // get current frame number of sequence
@@ -932,30 +561,11 @@ function renderImage(data){
 	$('#js-view-gallery').append(`data.`);
 }
 
-function getAndRenderAnimationThumb(){
-	getAnimationThumb(renderAnimationThumb);
-}
-
-function getAnimationThumb(callback){
-	const settings = {
-		contentType: "application/json",
-		url:  DATABASE_URL+`animations`,
-		success: callback,
-		error: "Error getting playlist"
-	};
-	$.ajax(settings);
-}
 
 
-function renderAnimationThumb(data){
-	console.log(data.animations[0].frame);
-	let source = data.animations[0].frame;//+"00001.png";
-	$('#js-showcase-thumb').append(`<image src="${source}" width="80%">`);
-}
 
 function handleCss(){
 	let sw = $('.square1').width();
-	console.log(sw);
 	$('.square1').css({'height':sw+'px'});
 	$('.square2').css({'height':sw+'px'});
 	$('.square1').css({'border-width':sw/10+'px'});
@@ -965,6 +575,196 @@ function handleCss(){
 function runApp(){
 	handleCss();
 }
+
+/// CANVAS POSTING FUNCTIONS ///
+function submitArtwork(){
+	$('#js-artwork-form').submit(function(event){
+		event.preventDefault();
+		createUserdrawnObject();
+	//	updateAnimationObject();
+	});
+}
+
+// POST new userdrawn object
+function createUserdrawnObject(){
+	let frameNumber = userArtworkObject.frameNumber;
+	console.log('framenumber ran');
+	// console.log(frameNumber);
+	// POST drawing to frame to userdrawn endpoint
+	// POST title to userdrawn
+	let title = $("js-title-form").val();
+	// POST username to userdrawn
+	let username = userArtworkObject.username;
+	// POST animationId
+	let animationId = userArtworkObject.animationId;
+	// POST artist name to userdrawn
+	let artist = userArtworkObject.artist;
+	// POST creationDate
+	let creationDate = new Date();
+	postUserDrawn(frameNumber, drawing, title, animationId, artist, creationDate);
+}
+// Update animation object
+function updateAnimationObject(){
+	// PUT new currentframe number to animation endpoint based on endpoint
+	// PUT drawing object in lastFrame to animation endpoint
+	// PUT date in lastDrawnDate to animation endpoint
+}
+
+function populateUserArtworkObject(){
+	console.log(animationInfo);
+	// POST frame number based on currentFrame used for guide to userdrawn endpoint
+	
+	getAndReturnArtistInfo();
+
+
+	// console.log(frameNumber);
+	// POST drawing to frame to userdrawn endpoint
+	// POST title to userdrawn
+	let title = $("js-title-form").val();
+	// POST username to userdrawn
+	let username = artistInfo.username;
+	// POST animationId
+	let animationId = testAnimationId;
+	// POST artist name to userdrawn
+	let artist = artistInfo.artist;
+	// POST creationDate
+	let creationDate = new Date();
+}
+
+function getUserProfile(callback){
+	console.log('getUsername running');
+	const settings = {
+		url:  DATABASE_URL+`userprofile`,
+		success: callback,
+		error: "Error getting userprofile info"
+	};
+	$.ajax(settings);
+}
+
+function gatherArtistInfo(data){
+	userProfileObject = {
+		id: data.id,
+	    username: data.username,
+	    name: data.name
+	}
+	//Use that info to get animation info and add to userArtworkObject
+	getAndReturnAnimationInfo(userProfileObject)
+	// return userProfileObject;
+}
+
+function getAndReturnAnimationInfo(){
+	getAndGatherAnimationInfo();
+}
+
+function getAndGatherAnimationInfo(){
+	getAnimationInfo(gatherAnimationInfo);
+}
+
+function getAnimationInfo(callback){
+	const settings = {
+		url:  DATABASE_URL+`animations`+testAnimationId,
+		success: callback,
+		error: "Error getting userprofile info",
+	};
+	$.ajax(settings);
+}
+
+function gatherAnimationInfo(data){
+	$.extend(userArtworkObject, {
+	 	title : data.animations[0].title, 
+	 	lastDrawnDate : data.animations[0].lastDrawnDate,
+		lastFrame: data.animations[0].lastFrame,
+	    frameCount: data.animations[0].frameCount
+	};
+}
+
+
+function getAndReturnArtistInfo(){
+	getUserProfile(returnUserInfo);
+}
+
+// Get Artist info and add to userArtworkObject
+function getAndGatherArtistInfo(){
+	getUserProfile(gatherArtistInfo);
+}
+
+
+function getArtistInfo(){
+	console.log('getAndRenderUsername ran');
+	getUserProfile(renderUsername);
+}
+
+
+
+function getAndReturnUsername(){
+	getUserProfile(returnUsername);
+}
+
+function returnUsername(data){
+	return data.userProfile[0].name;
+}
+
+function getAndReturnAnimationId(){
+
+}
+
+function getAndReturnArtistName(){
+
+}
+
+
+function postUserDrawn(_frameNumber, drawing, _title, _animationId, _artist, _creationDate){
+	console.log(sequenceId +":::"+ drawing);
+	console.log('postArtworkUserDrawn ran');	
+	const settings = {
+		url: DATABASE_URL + 'userdrawn/' + sequenceId,
+		method: 'PUT',
+			data: JSON.stringify({
+				//"id": sequenceId,
+				"frameNumber": _frameCount,
+				"frame": drawing,
+			    "title": _title,
+			    "animationId": _animationId,
+			    "artist": _artist,
+			    "creationDate": _creationDate 
+			}),
+			dataType: 'json',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			success: console.log('success PUT userdrawn'),
+			error: console.error('PUT drawing error')		
+	};
+	$.ajax(settings);
+	return false;
+}
+// 	console.log('putArtwork ran');	
+// 	const settings = {
+// 		url: DATABASE_URL + 'userprofile/' + userID,
+// 		method: 'POST',
+// 			data: JSON.stringify({
+// 				"id": userID,
+// 				"artwork": [{
+// 					"frame": drawing,
+// 		            "animationId": animationId,
+// 		            "title": artworkTitle,
+// 		            "creationDate": new Date()
+// 	            }]
+// 			}),
+// 			dataType: 'json',
+// 			headers: {
+// 				'Content-Type': 'application/json'
+// 			},
+// 			success: function(){
+// 				callback;
+// 				console.log('success!');
+// 			},
+// 			error: console.error('PUT drawing error')		
+// 	};
+// 	$.ajax(settings);
+// 	return false;
+// }
+
 
 // 1. POST frame to userdrawn
 // 2. GET frameId and animationId from userdrawn
@@ -976,52 +776,4 @@ $(runApp)
 //function that allows users to update their profile pic to any frame they've drawn, puts new frame item in userprofile artwork key
 
 ///    p5 Image Maker ///
-new p5();
-let userD;
-
-let imageSketch = function(p){
-p.preload = function(){
-	userD = userDrawing;
-}
-
-p.setup = function() {
-		let canvas  = p.createCanvas(1200, 1200);
-		canvas.parent('#js-artwork-thumb');	
-		p.background(255, 0, 0);
-
-		p.displayDrawing();
-		noLoop();
-
-	}
-
-	p.displayDrawing = function(){
-		if(userDrawing){
-
-			for (let i = 0; i < userDrawing.length; i++) {
-
-		   		let lines = userDrawing[i].lines;
-		   		let points = userDrawing[i].points;
-				let weight = userDrawing[i].radius;
-
-				if(lines){
-					console.log(userD);
-
-					for(let j = 0; j < lines.length; j++){
-						let c = userDrawing[i].color;
-						p.strokeWeight(weight);
-						p.stroke(c);
-						p.line(lines[j].mouseX, lines[j].mouseY, lines[j].pmouseX, lines[j].pmouseY);
-					}
-				}
-				if(points){
-					for(let j = 0; j < points.length; j++){
-						let c = userDrawing[i].color;
-						p.noStroke();
-						p.fill(c);
-						p.ellipse(points[j].x, points[j].y, weight, weight);
-					}
-				}
-			}
-		}
-	}
-}
+//new p5();

@@ -56,7 +56,7 @@ router.post('/', (req, res) =>{
 			title: req.body.title,
 			guide: req.body.guide,
 			userDrawn: req.body.userDrawn,
-			credits: req.body.credits
+			lastDrawn: req.body.lastDrawn
 		})
 		.then(
 			sequences => res.status(201).json(sequences.apiRepr()))

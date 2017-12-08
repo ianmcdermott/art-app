@@ -21,11 +21,16 @@ let pg;
 let isDrawing = false;
 let releasedMouse = false;
 let initialRadius = 50;
+let guideList = [];
+let fc =0;
+let displayOn = true; 
 
 function preload(){
 	pg = createGraphics(0, 0);
 	//guide image loads to graphics buffer to avoid being on same layer as drawn image
-	img = pg.loadImage(GUIDE_URL+NUMBER_EXTENSION);
+	let frameNum = stringifyFrameNumber(frameC);
+	img = loadImage(GUIDE_URL+frameNum+EXTENSION);
+	
 }
 
 function setup() {
@@ -35,27 +40,42 @@ function setup() {
 	fill(255);
 	rect(100, 100, 1000, 1000);
 	brush = new Brush(initialRadius, defaultSwatch);
+		console.log(guideList.length);
 
 	let submitButton = select('#js-artwork-submit');
 	let clearButton  = select('#js-artwork-clear');
 	clearButton.mousePressed(clearDrawing);
 	//populate color swatches
 	createPallet();
+	smooth();
+
 }
 
 function draw() {
 	background(255);
+	('image is '+ guideList[0]);
 	//set guide image
+	//let frameNum = fc;//Math.floor(map(mouseX, 0, 1200, 0, 300));
+	// frameNumString = stringifyFrameNumber(frameNum);
 	image(img, 100, 100);
 	//set frame
 	displayDrawing();
 	frame();	
 	renderPallet();
 
+	brush.display(mouseX, mouseY);
+	fc++;
+	if(fc > guideList.length-1) fc = 0;
+
 	if(keyIsPressed){
-		console.log("!!!!!!"+JSON.stringify(drawing));
 	}
 }
+
+
+function stringifyFrameNumber(n){
+	return (('0000'+n).slice(-5));
+}
+
 
 function displayDrawing(){
 	if(drawing){
@@ -117,12 +137,14 @@ function mouseDragged() {
 	isDrawing = true;
 	releasedMouse = false;
 	brush.drag(mouseX, mouseY);
-
+	displayOn = false;
 	return false;
 }
 
 function mouseReleased(){
 	releasedMouse = true;
+	displayOn = true;
+
 	isDrawing = false;
 }
 
@@ -227,8 +249,15 @@ class Brush{
 
  	}
 
-	display(){
-	
+	display(_x, _y){
+		if(displayOn){
+			stroke(0, 40);
+			noFill();
+			strokeWeight(1);
+			noSmooth();
+			ellipse(_x, _y, this.r);
+			smooth();
+		}
 	}
 
 	drag(_x, _y){

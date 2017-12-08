@@ -41,7 +41,7 @@ router.get('/:id', (req, res) =>{
 });
 
 router.post('/', (req, res) =>{
-	const requiredFields = ['title', 'creationDate', 'frame'];
+	const requiredFields = ['title', 'lastDrawnDate', 'lastFrame', 'frameCount'];
 	for(let i=0; i < requiredFields.length; i++){
 		const field = requiredFields[i];
 		if (!(field in req.body)) {
@@ -54,8 +54,9 @@ router.post('/', (req, res) =>{
 	Animations
 		.create({
 			title: req.body.title,
-			creationDate: req.body.creationDate,
-			frame: req.body.frame
+			lastDrawnDate: req.body.lastDrawnDate,
+			lastFrame: req.body.lastFrame,
+			frameCount: req.body.frameCount
 		})
 		.then(
 			animations => res.status(201).json(animations.apiRepr()))
@@ -75,7 +76,7 @@ router.put('/:id', (req, res) => {
 	}
 
 	const toUpdate = {};
-	const updateableFields = ['title', 'creationDate', 'frame'];
+	const updateableFields = ['title', 'lastDrawnDate', 'lastFrame', 'frameCount'];
 
 	updateableFields.forEach(field => {
 		if(field in req.body){

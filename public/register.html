@@ -1,43 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>artapp</title>
+	<title>Register</title>
 
 	<script src="libraries/p5.js"></script>
 	<script src="libraries/p5.dom.js"></script>
 	<script src="libraries/p5.sound.js"></script>
-
+	<!-- <script src="image.js" type="text/javascript"></script> -->
+	<script
+		  src="https://code.jquery.com/jquery-3.2.1.js"
+		  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		  crossorigin="anonymous">
+	</script>
+	<script src="app.js" type="text/javascript"></script>
 	<link href="meyerreset.css" rel="stylesheet" type="text/css">
 	<link href="main.css" rel="stylesheet" type="text/css">
 
-	<style>
-		body {
-			margin:0;
-			padding:0;
-			overflow: hidden;
-		}
-		canvas {
-			margin:auto;
-		}
-	</style>
 </head>
 <body>
 	<div id="wrapper">
-		<header role="banner">Header</header>
-
+		<header role="banner"><h1>Header</h1></header>
 		<main role="main">
-			<div id="userInfo"></div>
-			<div id="userImage"></div>
-			<div id="userArtwork"></div>
+			<form>
+				<legend>Register</legend>
+				<h2>Sign Up</h2>
+				<input type='text' name="Username" placeholder="Username">
+				<input type='text' name="Password" placeholder="Password">
+				<input type='text' name="firstName" placeholder="First Name">
+				<input type='text' name="lastName" placeholder="Last Name">
+				<input type="submit">Start Drawing!</form>
+			</form>
+			<p>Don't have an account?<a href="register.html">Register Here</a></p>
 		</main>
-
 		<footer role="contentinfo">
-			<a href="showcase.html">Showcase</a>
-			<a href="gallery.html">Gallery</a>
+			<a href="about.html">Showcase</a>
 		</footer>
 	</div>
 	<script
@@ -45,7 +45,7 @@
 		  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
 		  crossorigin="anonymous">
 	</script>
-	<script src="app.js" type="text/javascript"></script>
 
 </body>
 </html>
+

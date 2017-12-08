@@ -25,4 +25,3 @@ function draw(){
 	if(currentFrame == images.length) currentFrame = 0;
 }
 
-function
