@@ -21,20 +21,20 @@
 	<link href="main.css" rel="stylesheet" type="text/css">
 
 </head>
-<body>
+<body onload="registerUser();">
 	<div id="wrapper">
 		<header role="banner"><h1>Header</h1></header>
 		<main role="main">
-			<form>
+			<form id="js-register-user-form" action="dashboard.html">
 				<legend>Register</legend>
 				<h2>Sign Up</h2>
-				<input type='text' name="Username" placeholder="Username">
-				<input type='text' name="Password" placeholder="Password">
-				<input type='text' name="firstName" placeholder="First Name">
-				<input type='text' name="lastName" placeholder="Last Name">
-				<input type="submit">Start Drawing!</form>
+				<input type='text' name="Username" placeholder="Username" id="js-username-submit">
+				<input type='password' name="Password" placeholder="Password" id="js-password-submit">
+				<input type='text' name="firstName" placeholder="First Name" id="js-firstName-submit">
+				<input type='text' name="lastName" placeholder="Last Name" id="js-lastName-submit">
+				<input type="submit" id="#js-register-submit" value="Start Drawing!">
 			</form>
-			<p>Don't have an account?<a href="register.html">Register Here</a></p>
+			<p>Already have an account?<a href="register.html">Login Here</a></p>
 		</main>
 		<footer role="contentinfo">
 			<a href="about.html">Showcase</a>

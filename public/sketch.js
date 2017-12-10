@@ -1,3 +1,4 @@
+
 let x = 0;
 let creamsicle = '#ffb241';
 let mint = '#39b876';
@@ -32,6 +33,7 @@ function preload(){
 	img = loadImage(GUIDE_URL+frameNum+EXTENSION);
 	
 }
+
 
 function setup() {
 	let canvas  = createCanvas(1200, 1200);
