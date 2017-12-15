@@ -29,18 +29,18 @@ let displayOn = true;
 function preload(){
 	pg = createGraphics(0, 0);
 	//guide image loads to graphics buffer to avoid being on same layer as drawn image
-	let frameNum = stringifyFrameNumber(frameC);
+	let frameNum = stringifyFrameNumber(userArtworkObject.frameCount);
 	img = loadImage(GUIDE_URL+frameNum+EXTENSION);
-	
+	console.log(GUIDE_URL+frameNum+EXTENSION);
 }
 
 
 function setup() {
-	let canvas  = createCanvas(1200, 1200);
+	let canvas  = createCanvas(1000, 1000);
 	canvas.parent('js-sketch-holder');
 	noStroke();
-	fill(255);
-	rect(100, 100, 1000, 1000);
+	// fill(255);
+	// rect(100, 100, 1000, 1000);
 	brush = new Brush(initialRadius, defaultSwatch);
 		console.log(guideList.length);
 
@@ -59,7 +59,7 @@ function draw() {
 	//set guide image
 	//let frameNum = fc;//Math.floor(map(mouseX, 0, 1200, 0, 300));
 	// frameNumString = stringifyFrameNumber(frameNum);
-	image(img, 100, 100);
+	image(img, 100, 100, 800, 800);
 	//set frame
 	displayDrawing();
 	frame();	
@@ -126,13 +126,13 @@ function renderPallet(){
 function frame(){
 	noStroke();
 	fill(0);
-	rect(0, 0, 1200, 100);
+	rect(0, 0, 1000, 100);
 	fill(0);
-	rect(0, 1100, 1200, 100);
+	rect(0, 900, 1000, 100);
 	fill(0);
-	rect(0, 0, 100, 1200);
+	rect(0, 0, 100, 1000);
 	fill(0);
-	rect(1100, 0, 100, 1200);
+	rect(900, 0, 100, 1000);
 }
 
 function mouseDragged() {
@@ -155,7 +155,9 @@ function mouseClicked(){
 	for(let i = 0; i < numColor; i++){
 		swatches[i].clicked(mouseX, mouseY);
 	}
-	brush.click(mouseX, mouseY);
+	if(mouseX >= 100 && mouseX <= width-100 && mouseY >= 100 && mouseY <= height-100 ) {
+			brush.click(mouseX, mouseY);
+	}
 }
 
 function keyPressed(){

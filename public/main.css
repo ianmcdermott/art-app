@@ -17,10 +17,16 @@ body {
 	height: 100%;
 }
 
+p, h1, h2, h3, h4, h5, h6, a, div{
+	  font-family: 'Muli', sans-serif;
+
+}
+
 header{
 	text-align: center;
 	padding: 15px;
 	background-color: #555;
+	font-size: 50px;
 }
 
 canvas {
@@ -51,6 +57,11 @@ a:visited{
 	color: #555;
 }
 
+a:visited{
+	text-decoration: none;
+	color: #555;
+}
+
 form{
 	text-align: center;
 	padding: 15px;
@@ -71,32 +82,47 @@ form{
 }
 
 #js-make-art{
-	width: 50%;
+
+	margin: 20% auto;
 }
 
 #js-view-art{
 
 }
 
+#js-user-info{
+	clear: both;
+}
+
 #dashboard-link{
-	float: right;
+	display: inline-block;
+	padding: 5px;
 	position: relative;
-	display: block;
-	width: 100%;
+	background-color: #0f0;
+	float: right;
+}
+
+#dashboard-link p{
+	right: 0;
+	float: right;
+	position: absolute;
+	display: inline;
 }
 
 #js-sketch-holder{
 	width: 100%;
 }
 
-#js-animation-info{
-	display: block;
+
+
+#js-animation-info p{
 	text-align: center;
 }
 
-#js-animation-info p{
-	display: block;
-	text-align: center;
+#js-animation-thumb, #js-artwork-thumb{
+	margin: 10px auto;
+	width: 100%;
+	height: 100%;
 }
 
 #js-instructions{
@@ -112,6 +138,23 @@ form{
 	max-width: 20%;
 }
 
+#js-theatre-holder{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	margin: 10 auto;
+}
+
+#js-artwork-clear{
+	margin: 0 auto;
+	text-align: center;
+}
+
+.square1, .square2{
+	clear: right;
+}
+
 .square1{
 	width: 50%;
 	background-color: #fff;
@@ -122,6 +165,7 @@ form{
 	position: relative;
 	text-align: center;
 	float: left;
+	display: block;
 }
 
 .square2{
@@ -134,10 +178,69 @@ form{
 	position: relative;
 	text-align: center;
 	float: left;
-	display: inline;
+	display: block;	
 }
 
 .square1 image, .square2 image{
 	margin: 0;
 	padding: 15px;
+}
+
+.plack-white, .plack-black, .plack-white-static, .plack-black-static{
+	padding: 10px;
+	width: 60%;
+	margin: 0 auto;
+	bottom: 10;
+	display: absolute;
+}
+
+.plack-black, .plack-black-static{
+	background-color: #000;
+	color: #fff;	
+	border: 5px solid white;	
+}
+
+.plack-white, .plack-white-static{
+	background-color: #fff;
+	color: #000;	
+	border: 5px solid black;	
+}
+
+.plack-black a{
+	color: #fff;
+}
+
+.plack-white a{
+	color: #000;
+}
+
+.plack-black a, .plack-white a{
+	display: inline-block;
+	width: 100%;
+}
+
+.plack-white:hover a{
+	color: #fff;
+	text-decoration: none;
+}
+
+.plack-black:hover a{
+	color: #000;
+	text-decoration: none;
+}
+
+.plack-white:hover p{
+	background-color: #fff;
+	color: #000;
+}
+
+.plack-black:hover p{
+	background-color: #000;
+	color: #fff;
+}
+
+
+
+.plack-black:hover{
+	background-color: #fff;
 }
