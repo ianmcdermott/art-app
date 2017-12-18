@@ -4,10 +4,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const passport = require('passport');
+const cors = require('cors');
 
-const {router: usersRouter} = require('./users')
-const {router: authRouter, localStrategy, jwtStrategy} = require('./auth')
-const {router: sequenceRouter} = require('./sequences')
+const {router: usersRouter} = require('./users');
+const {router: authRouter, localStrategy, jwtStrategy} = require('./auth');
+const {router: sequenceRouter} = require('./sequences');
+const {router: animationRouter} = require('./animations');
+const {router: userProfileRouter} = require('./userprofile');
+const {router: userdrawnRouter} = require('./userdrawn');
+// const {router: guideRouter} = require('./guide');
 mongoose.Promise = global.Promise;
 
 const {PORT, DATABASE_URL} = require('./config');
@@ -17,7 +22,7 @@ const app = express();
 app.use(express.static('public'));
 
 app.use(morgan('common'));
-
+// app.use(cors());
 app.use(function(req, res, next){
 	res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -33,8 +38,11 @@ passport.use(jwtStrategy);
 
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
-// app.use('/api/sequences/', sequenceRouter);
-
+app.use('/sequences', sequenceRouter);
+app.use('/animations', animationRouter);
+app.use('/userprofile', userProfileRouter);
+app.use('/userdrawn', userdrawnRouter);
+// app.use('/guide', userProfileRouter);
 
 const jwtAuth = passport.authenticate('jwt', {session: false});
 

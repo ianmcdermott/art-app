@@ -8,6 +8,7 @@ const {User} = require('./models');
 const router = express.Router();
 
 const jsonParser = bodyParser.json();
+const jwtAuth = passport.authenticate('jwt', {session: false});
 
 //Filter ensuring parameters are met, then post to register a user
 router.post('/', jsonParser, (req, res) => {
@@ -123,9 +124,18 @@ router.post('/', jsonParser, (req, res) => {
 });
 
 router.get('/', (req, res) =>{
-	return User.find()
+	return User
+		.find()
 		.then(users => res.json(users.map(user => user.apiRepr())))
 		.catch(err => res.status(500).json({message: 'Internal server error'}));
+});
+
+router.delete('/', jwtAuth, (req, res) =>{
+	User
+		.find({"username": req.query.username})
+		.remove(this)	
+		.then(user => res.status(204).end())
+		.catch(err => res.status(500).json({message: 'Internal server error'}));	
 });
 
 module.exports = {router};
