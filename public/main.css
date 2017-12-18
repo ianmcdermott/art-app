@@ -13,7 +13,6 @@ html {
 body {
 	margin:0;
 	padding:0;
-	background-color: #555;
 	height: 100%;
 }
 
@@ -25,7 +24,6 @@ p, h1, h2, h3, h4, h5, h6, a, div{
 header{
 	text-align: center;
 	padding: 15px;
-	background-color: #555;
 	font-size: 50px;
 }
 
@@ -35,8 +33,8 @@ canvas {
 }
 
 main{
-	background-color: #aaa;
-	width: 80%;
+	background-color: #fff;
+	width: 1170px;
 	margin: 0 auto;
 	position: relative;
 }
@@ -54,12 +52,12 @@ footer a{
 
 a:visited{
 	text-decoration: none;
-	color: #555;
+	color: #000;
 }
 
 a:visited{
 	text-decoration: none;
-	color: #555;
+	color: #000;
 }
 
 form{
@@ -67,8 +65,20 @@ form{
 	padding: 15px;
 }
 
+
+a{
+	text-decoration: none;
+	color: #000;
+}
+
+a:hover{
+	font-weight: 700;
+		color: #000;
+
+}
+
+
 #wrapper{
-	background-color: #aaa;
 	height: 100%;
 	position: relative;
 	display: block;
@@ -82,8 +92,9 @@ form{
 }
 
 #js-make-art{
-
-	margin: 20% auto;
+	display: block;
+	margin: 0 auto;
+	width: 100%;
 }
 
 #js-view-art{
@@ -94,12 +105,27 @@ form{
 	clear: both;
 }
 
-#dashboard-link{
+#dashboard-link, #settings-link{
 	display: inline-block;
 	padding: 5px;
 	position: relative;
-	background-color: #0f0;
+	border: 4px solid #000;
+	border-left: ;
+	font-size: 1.5em;
+	margin-bottom: 10px;
+}
+
+#dashboard-link{
+	float: left;
+}
+
+#settings-link{
 	float: right;
+}
+
+#dashboard-link:hover, #settings-link:hover{
+	background-color: #FFCE2E;
+	font-weight: normal;
 }
 
 #dashboard-link p{
@@ -121,12 +147,12 @@ form{
 
 #js-animation-thumb, #js-artwork-thumb{
 	margin: 10px auto;
-	width: 100%;
 	height: 100%;
 }
 
 #js-instructions{
 	text-align: center;
+	clear: both;
 }
 
 #js-view-art{
@@ -149,6 +175,12 @@ form{
 #js-artwork-clear{
 	margin: 0 auto;
 	text-align: center;
+}
+
+#js-delete-profile{
+	margin: 0 auto;
+	position: relative;
+	display: block;
 }
 
 .square1, .square2{
@@ -190,7 +222,7 @@ form{
 	padding: 10px;
 	width: 60%;
 	margin: 0 auto;
-	bottom: 10;
+	bottom: 20px;
 	display: absolute;
 }
 
@@ -230,17 +262,34 @@ form{
 }
 
 .plack-white:hover p{
-	background-color: #fff;
+	background-color: #FFCE2E;
 	color: #000;
 }
 
 .plack-black:hover p{
-	background-color: #000;
+	background-color: #FFCE2E;
 	color: #fff;
 }
 
+.plack-black:hover, .plack-white:hover{
+	background-color: #FFCE2E;
+}
+.centered{
+	text-align: center;
+	margin: 0 auto;
+	display: block;
+}
 
+.center-flex{
+	display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row;
+   flex-direction: row;
+   -webkit-align-items: center;
+   align-items: center;
+ }
 
-.plack-black:hover{
-	background-color: #fff;
+.link{
+	border-bottom: 2px solid #FFCE2E;
+
 }
