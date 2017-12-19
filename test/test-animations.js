@@ -30,8 +30,9 @@ function seedAnimationData(){
 	for(let i=1; i<= 10; i++){
 		seedData.push({
 			title: faker.name.firstName(),
-		    creationDate: faker.date.past(),
-		    frame: '0000'
+		    lastDrawnDate: faker.date.past(),
+  			lastFrame: faker.random.arrayElement,
+		    frameCount: faker.random.number
 		});
 	}
 	return Animations.insertMany(seedData);
@@ -85,15 +86,16 @@ describe('Animations API resource', function(){
 					res.body.animations.should.have.length.of.at.least(1);
 					res.body.animations.forEach(post =>{
 						post.should.a('object');
-						post.should.include.keys('id', 'title', 'creationDate', 'frame');
+						post.should.include.keys('id', 'title', 'lastDrawnDate', 'lastFrame', 'frameCount');
 					});
 					resAnimation = res.body.animations[0];
 					return Animations.findById(resAnimation.id);
 				})
 				.then(animation => {
 					resAnimation.title.should.equal(animation.title);
-					resAnimation.creationDate.should.equal(animation.creationDate);
-					resAnimation.frame.should.equal(animation.frame);
+					resAnimation.lastDrawnDate.should.equal(animation.lastDrawnDate);
+					resAnimation.lastFrame.should.equal(animation.lastFrame);
+					resAnimation.frameCount.should.equal(animation.frameCount);
 				});
 		});
 	});
@@ -101,9 +103,10 @@ describe('Animations API resource', function(){
 	describe('POST endpoint', function(){
 		it('Should add a new animation', function(){
 			const newAnimation = {
-				title: faker.company.bsNoun(),
-			    creationDate: faker.date.past(),
-			    frame: '0000'
+				title: faker.name.firstName(),
+			    lastDrawnDate: faker.date.past(),
+	  			lastFrame: faker.random.arrayElement,
+			    frameCount: faker.random.number
 			}
 
 			return chai.request(app)
@@ -114,17 +117,20 @@ describe('Animations API resource', function(){
 					res.should.be.json;
 					res.body.should.be.a('object');
 					res.body.should.include.keys(
-						'id', 'title', 'creationDate', 'frame');
+						'id', 'title', 'lastDrawnDate', 'lastFrame', 'frameCount');
 					res.body.title.should.equal(newAnimation.title);
-					//res.body.creationDate.should.equal(newAnimation.creationDate);
-					res.body.frame.should.equal(newAnimation.frame);
+					res.body.lastDrawnDate.should.equal(newAnimation.lastDrawnDate);
+					res.body.lastFrame.should.equal(newAnimation.lastFrame);
+					res.body.frameCount.should.equal(newAnimation.frameCount);
+
 					res.body.id.should.not.be.null;
 					return Animations.findById(res.body.id);
 				})
 				.then(function(animation) {
 					animation.title.should.equal(newAnimation.title);
-				//	animation.creationDate.should.equal(newAnimate.creationDate);
-					animation.frame.should.equal(newAnimation.frame)
+					animation.lastDrawnDate.should.equal(newAnimate.lastDrawnDate);
+					animation.frame.should.equal(newAnimation.frame);
+					animation.frameCount.should.equal(newAnimation.frameCount);
 				});
 		});
 	});
@@ -132,9 +138,10 @@ describe('Animations API resource', function(){
 	describe('PUT endpoint', function(){
 		it('should update fields with new data', function(){
 			const update = {
-				title: "Test Title",
-			    creationDate: faker.date.past(),
-			    frame: '9999'
+				title: faker.name.firstName(),
+			    lastDrawnDate: faker.date.past(),
+	  			lastFrame: faker.random.arrayElement,
+			    frameCount: faker.random.number
 			};
 
 			return Animations
@@ -153,8 +160,10 @@ describe('Animations API resource', function(){
 				})
 				.then(animation => {
 					animation.title.should.equal(update.title);
-				//	animation.creationDate.should.equal(update.creationDate);
+					animation.lastDrawnDate.should.equal(update.lastDrawnDate);
 					animation.frame.should.equal(update.frame);
+					animation.frameCount.should.equal(update.frameCount);
+
 				});
 		});
 	});
