@@ -293,3 +293,8 @@ a:hover{
 	border-bottom: 2px solid #FFCE2E;
 
 }
+
+.legend-header{
+	font-size: 2em;
+	margin: 10px;
+}
