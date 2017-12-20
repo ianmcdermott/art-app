@@ -52,49 +52,47 @@ app.get('/api/protected', jwtAuth, (req, res) =>{
 });
 
 
-app.use('*', function(req, res){
+app.use('*', (req, res) =>{
 	return res.status(404).json({message: 'Not Found'});
 });
 
 let server;
 
 function runServer() {
-  return new Promise(function(resolve, reject){
-    mongoose.connect(DATABASE_URL, { useMongoClient: true }, function(err) {
+  return new Promise((resolve, reject) => {
+    mongoose.connect(DATABASE_URL, { useMongoClient: true }, err => {
       if (err) {
         return reject(err);
       }
       server = app
-        .listen(PORT, function(){
+        .listen(PORT, () => {
           console.log(`Your app is listening on port ${PORT}`);
-          return resolve();
+           resolve();
         })
-        .on('error', function(err){
+        .on('error', err => {
           mongoose.disconnect();
-          return reject(err);
+           reject(err);
         });
     });
   });
 }
 
 function closeServer() {
-  return mongoose.disconnect().then(function(){
-    return new Promise(function(resolve, reject) {
+  return mongoose.disconnect().then(() => {
+    return new Promise((resolve, reject) => {
       console.log('Closing server');
-      server.close(function(err){
+      server.close(err => {
         if (err) {
           return reject(err);
         }
-        return resolve();
+        resolve();
       });
     });
   });
 }
 
 if(require.main === module){
-	runServer().catch(function(e){ 
-    console.error(e)
-  });
+	runServer().catch(e => console.error(e));
 };
 
 module.exports = {app, runServer, closeServer};
