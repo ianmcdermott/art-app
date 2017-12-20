@@ -39,11 +39,11 @@ function generateToken(){
 }
 
 function tearDownDB(){
-	return new Promise((resolve, reject) => {
+	return new Promise(function(resolve, reject){
 		console.warn('Deleting database');
 		mongoose.connection.dropDatabase()
-			.then(result => resolve(result))
-			.catch(err => reject(err))
+			.then(function(result){resolve(result)})
+			.catch(function(err){reject(err)})
 	});
 }
 
@@ -100,14 +100,14 @@ describe('Animations API resource', function(){
 				.request(app)
 				.get('/animations')
 				.set('authorization', `Bearer ${token}`)
-				.then(_res => {
+				.then(function(_res) {
 					res = _res;
 					console.log('Res body is '+ res.body);
 					res.should.have.status(200);
 					res.body.animations.should.have.length.of.at.least(1);
 					return Animations.count();
 				})
-				.then(count =>{
+				.then(function(count){
 					res.body.animations.should.have.lengthOf(count);
 				});
 		});
@@ -120,19 +120,19 @@ describe('Animations API resource', function(){
 				.request(app)
 				.get('/animations')
 				.set('authorization', `Bearer ${token}`)
-				.then(res => {
+				.then(function(res) {
 					res.should.have.status(200);
 					res.should.be.json;
 					res.body.animations.should.be.a('array');
 					res.body.animations.should.have.length.of.at.least(1);
-					res.body.animations.forEach(post =>{
+					res.body.animations.forEach(function(post){
 						post.should.a('object');
 						post.should.include.keys('id', 'title', 'lastDrawnDate', 'lastFrame', 'frameCount');
 					});
 					resAnimation = res.body.animations[0];
 					return Animations.findById(resAnimation.id);
 				})
-				.then(animation => {
+				.then(function(animation) {
 					resAnimation.title.should.equal(animation.title);
 				//	resAnimation.lastDrawnDate.should.equalDate(animation.lastDrawnDate);
 				//	resAnimation.lastFrame.should.equal(animation.lastFrame);
@@ -218,7 +218,7 @@ describe('Animations API resource', function(){
 
 			return Animations
 				.findOne()
-				.then(animation => {
+				.then(function(animation) {
 					update.id = animation.id;
 					//post the fake data
 					return chai
@@ -227,11 +227,11 @@ describe('Animations API resource', function(){
 						.set('authorization', `Bearer ${token}`)
 						.send(update);
 				})
-				.then(res => {
+				.then(function(res){
 					res.should.have.status(204);
 					return Animations.findById(update.id);
 				})
-				.then(animation => {
+				.then(function(animation){
 					animation.title.should.equal(update.title);
 					animation.lastDrawnDate.should.equalDate(update.lastDrawnDate);
 				//	animation.lastFrame.should.equal(update.lastFrame);
@@ -248,7 +248,7 @@ describe('Animations API resource', function(){
 
 			return Animations
 				.findOne()
-				.then(_animation => {
+				.then(function(_animation){
 					animation = _animation;
 					return chai
 					.request(app)
@@ -256,11 +256,11 @@ describe('Animations API resource', function(){
 					.set('authorization', `Bearer ${token}`);
 
 				})
-				.then(res => {
+				.then(function(res){
 					res.should.have.status(204);
 					return Animations.findById(animation.id);
 				})
-				.then(_animation => {
+				.then(function(_animation) {
 					should.not.exist(_animation);
 				})
 		})

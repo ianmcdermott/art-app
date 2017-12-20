@@ -37,11 +37,11 @@ function generateToken(){
 }
 
 function tearDownDB(){
-	return new Promise((resolve, reject) => {
+	return new Promise(function(resolve, reject){
 		console.warn('Deleting database');
 		mongoose.connection.dropDatabase()
-			.then(result => resolve(result))
-			.catch(err => reject(err))
+			.then(function(result){resolve(result)})
+			.catch(function(err){reject(err)})
 	});
 }
 
@@ -110,7 +110,7 @@ describe('Userdrawn API resource', function(){
 					res.body.userdrawn.should.have.length.of.at.least(1);
 					return UserDrawn.count();
 				})
-				.then(count =>{
+				.then(function(count){
 					res.body.userdrawn.should.have.lengthOf(count);
 				});
 		});
@@ -122,12 +122,12 @@ describe('Userdrawn API resource', function(){
 				.request(app)
 				.get('/userdrawn')
 				.set('authorization', `Bearer ${token}`)
-				.then(res => {
+				.then(function(res){
 					res.should.have.status(200);
 					res.should.be.json;
 					res.body.userdrawn.should.be.a('array');
 					res.body.userdrawn.should.have.length.of.at.least(1);
-					res.body.userdrawn.forEach(userdrawn =>{
+					res.body.userdrawn.forEach(function(userdrawn){
 						userdrawn.should.a('object');
 						userdrawn.should.include.keys('id', 'frameNumber', 'frame', 'title', 'animationId', 'artist', 'creationDate', 'userId');
 						userdrawn.frameNumber.should.be.a('number');
@@ -143,7 +143,7 @@ describe('Userdrawn API resource', function(){
 
 					return UserDrawn.findById(resUserdrawn.id);
 				})
-				.then(userdrawn => {
+				.then(function(userdrawn){
 					resUserdrawn.frameNumber.should.equal(userdrawn.frameNumber);	
 				//	resUserdrawn.frame.should.equal(userdrawn.frame);		
 					resUserdrawn.title.should.equal(userdrawn.title);		
@@ -157,120 +157,120 @@ describe('Userdrawn API resource', function(){
 
 	describe('POST endpoint', function(){
 		
-	// 	it('Should add a new userdrawn', function(){
-	// 		const token = generateToken();
+		it('Should add a new userdrawn', function(){
+			const token = generateToken();
 
-	// 		const newUserdrawn = {
-	// 			id: faker.random.alphaNumeric(24),
-	// 			frameNumber: faker.random.number(100),
-	//   			frame: [{
-	//   				color: faker.internet.color(),
-	// 		        lines: [{
-	// 		          mouseX: faker.random.number(1000), 
-	// 		          mouseY: faker.random.number(1000), 
-	// 		          pmouseX: faker.random.number(1000), 
-	// 		          pmouseY: faker.random.number(1000)
-	// 		        }],
-	// 		        points: [{
-	// 		          x: faker.random.number(1000),
-	// 		          y: faker.random.number(1000)
-	// 		        }],
-	// 		        radius: faker.random.number(100)
-	// 		    }],
-	// 			title: faker.company.bsNoun(),
-	// 			animationId: faker.random.alphaNumeric(24),
-	// 			artist: faker.company.bsNoun(),
-	// 		    creationDate: faker.date.recent(),
-	// 		    userId: faker.random.alphaNumeric(24)
-	// 		}
+			const newUserdrawn = {
+				id: faker.random.alphaNumeric(24),
+				frameNumber: faker.random.number(100),
+	  			frame: [{
+	  				color: faker.internet.color(),
+			        lines: [{
+			          mouseX: faker.random.number(1000), 
+			          mouseY: faker.random.number(1000), 
+			          pmouseX: faker.random.number(1000), 
+			          pmouseY: faker.random.number(1000)
+			        }],
+			        points: [{
+			          x: faker.random.number(1000),
+			          y: faker.random.number(1000)
+			        }],
+			        radius: faker.random.number(100)
+			    }],
+				title: faker.company.bsNoun(),
+				animationId: faker.random.alphaNumeric(24),
+				artist: faker.company.bsNoun(),
+			    creationDate: faker.date.recent(),
+			    userId: faker.random.alphaNumeric(24)
+			}
 
-	// 		return chai.request(app)
-	// 			.post('/userdrawn')
-	// 			.set('authorization', `Bearer ${token}`)
-	// 			.send(newUserdrawn)
-	// 			.then(function(res) {
-	// 				res.should.have.status(201);
-	// 				res.should.be.json;
-	// 				res.body.should.be.a('object');
-	// 				res.body.should.include.keys(
-	// 					'id', 'frameNumber', 'frame', 'title', 'animationId', 'artist', 'creationDate', 'userId');
-	// 				res.body.id.should.equal(newUserdrawn.id);
-	// 				res.body.frameNumber.should.equal(newUserdrawn.frameNumber);
-	// 				res.body.frame.should.equal(newUserdrawn.frame);
-	// 				res.body.title.should.equal(newUserdrawn.title);
-	// 				res.body.animationId.should.equal(newUserdrawn.animationId);
-	// 				res.body.artist.should.equal(newUserdrawn.artist);
-	// 				res.body.creationDate.should.equal(newUserdrawn.creationDate);
-	// 				res.body.userId.should.equal(newUserdrawn.userId);
-	// 				res.body.id.should.not.be.null;
-	// 				return UserDrawn.findById(res.body.id);
-	// 			})
-	// 			.then(function(userdrawn) {
-	// 				resUserdrawn.frameNumber.should.equal(userdrawn.frameNumber);	
-	// 				resUserdrawn.frame.should.equal(userdrawn.frame);		
-	// 				resUserdrawn.title.should.equal(userdrawn.title);		
-	// 				resUserdrawn.animationId.should.equal(userdrawn.animationId);		
-	// 				resUserdrawn.artist.should.equal(userdrawn.artist);		
-	// 				resUserdrawn.creationDate.should.equal(userdrawn.creationDate);		
-	// 				resUserdrawn.userId.should.equal(userdrawn.userId);		
-	// 			});
-	// 	});
-	// });
+			return chai.request(app)
+				.post('/userdrawn')
+				.set('authorization', `Bearer ${token}`)
+				.send(newUserdrawn)
+				.then(function(res) {
+					res.should.have.status(201);
+					res.should.be.json;
+					res.body.should.be.a('object');
+					res.body.should.include.keys(
+						'id', 'frameNumber', 'frame', 'title', 'animationId', 'artist', 'creationDate', 'userId');
+					res.body.id.should.equal(newUserdrawn.id);
+					res.body.frameNumber.should.equal(newUserdrawn.frameNumber);
+					res.body.frame.should.equal(newUserdrawn.frame);
+					res.body.title.should.equal(newUserdrawn.title);
+					res.body.animationId.should.equal(newUserdrawn.animationId);
+					res.body.artist.should.equal(newUserdrawn.artist);
+					res.body.creationDate.should.equal(newUserdrawn.creationDate);
+					res.body.userId.should.equal(newUserdrawn.userId);
+					res.body.id.should.not.be.null;
+					return UserDrawn.findById(res.body.id);
+				})
+				.then(function(userdrawn) {
+					resUserdrawn.frameNumber.should.equal(userdrawn.frameNumber);	
+					resUserdrawn.frame.should.equal(userdrawn.frame);		
+					resUserdrawn.title.should.equal(userdrawn.title);		
+					resUserdrawn.animationId.should.equal(userdrawn.animationId);		
+					resUserdrawn.artist.should.equal(userdrawn.artist);		
+					resUserdrawn.creationDate.should.equal(userdrawn.creationDate);		
+					resUserdrawn.userId.should.equal(userdrawn.userId);		
+				});
+		});
+	});
 
-	// describe('PUT endpoint', function(){
-	// 	const token = generateToken();
+	describe('PUT endpoint', function(){
+		const token = generateToken();
 
-	// 	it('should update fields with new data', function(){
+		it('should update fields with new data', function(){
 
-	// 		const update = {
-	// 			id: faker.random.alphaNumeric(24),
-	// 			frameNumber: faker.random.number(100),
-	//   			frame: [{
-	//   				color: faker.internet.color(),
-	// 		        lines: [{
-	// 		          mouseX: faker.random.number(1000), 
-	// 		          mouseY: faker.random.number(1000), 
-	// 		          pmouseX: faker.random.number(1000), 
-	// 		          pmouseY: faker.random.number(1000)
-	// 		        }],
-	// 		        points: [{
-	// 		          x: faker.random.number(1000),
-	// 		          y: faker.random.number(1000)
-	// 		        }],
-	// 		        radius: faker.random.number(100)
-	// 		    }],
-	// 			title: faker.company.bsNoun(),
-	// 			animationId: faker.random.alphaNumeric(24),
-	// 			artist: faker.company.bsNoun(),
-	// 		    creationDate: faker.date.recent(),
-	// 		    userId: faker.random.alphaNumeric(24)
-	// 		}
+			const update = {
+				id: faker.random.alphaNumeric(24),
+				frameNumber: faker.random.number(100),
+	  			frame: [{
+	  				color: faker.internet.color(),
+			        lines: [{
+			          mouseX: faker.random.number(1000), 
+			          mouseY: faker.random.number(1000), 
+			          pmouseX: faker.random.number(1000), 
+			          pmouseY: faker.random.number(1000)
+			        }],
+			        points: [{
+			          x: faker.random.number(1000),
+			          y: faker.random.number(1000)
+			        }],
+			        radius: faker.random.number(100)
+			    }],
+				title: faker.company.bsNoun(),
+				animationId: faker.random.alphaNumeric(24),
+				artist: faker.company.bsNoun(),
+			    creationDate: faker.date.recent(),
+			    userId: faker.random.alphaNumeric(24)
+			}
 
-	// 		return UserDrawn
-	// 			.findOne()
-	// 			.then(userdrawn => {
-	// 				update.id = userdrawn.id;
-	// 				//post the fake data
-	// 				return chai
-	// 					.request(app)
-	// 					.put(`/userdrawn/${userdrawn.id}`)
-	// 					.set('authorization', `Bearer ${token}`)
-	// 					.send(update);
-	// 			})
-	// 			.then(res => {
-	// 				res.should.have.status(204);
-	// 				return UserDrawn.findById(update.id);
-	// 			})
-	// 			.then(userdrawn => {
-	// 				resUserdrawn.frameNumber.should.equal(userdrawn.frameNumber);	
-	// 				resUserdrawn.frame.should.equal(userdrawn.frame);		
-	// 				resUserdrawn.title.should.equal(userdrawn.title);		
-	// 				resUserdrawn.animationId.should.equal(userdrawn.animationId);		
-	// 				resUserdrawn.artist.should.equal(userdrawn.artist);		
-	// 				resUserdrawn.creationDate.should.equal(userdrawn.creationDate);		
-	// 				resUserdrawn.userId.should.equal(userdrawn.userId);		
-	// 	});
-	// });
+			return UserDrawn
+				.findOne()
+				.then(function(userdrawn){
+					update.id = userdrawn.id;
+					//post the fake data
+					return chai
+						.request(app)
+						.put(`/userdrawn/${userdrawn.id}`)
+						.set('authorization', `Bearer ${token}`)
+						.send(update);
+				})
+				.then(function(res) {
+					res.should.have.status(204);
+					return UserDrawn.findById(update.id);
+				})
+				.then(function(userdrawn){
+					resUserdrawn.frameNumber.should.equal(userdrawn.frameNumber);	
+					resUserdrawn.frame.should.equal(userdrawn.frame);		
+					resUserdrawn.title.should.equal(userdrawn.title);		
+					resUserdrawn.animationId.should.equal(userdrawn.animationId);		
+					resUserdrawn.artist.should.equal(userdrawn.artist);		
+					resUserdrawn.creationDate.should.equal(userdrawn.creationDate);		
+					resUserdrawn.userId.should.equal(userdrawn.userId);		
+		});
+	});
 
 	describe('DELETE endpoint', function(){
 		const token = generateToken();
@@ -280,7 +280,7 @@ describe('Userdrawn API resource', function(){
 
 			return UserDrawn
 				.findOne()
-				.then(_animation => {
+				.then(function(_animation){
 					userdrawn = _animation;
 					return chai
 					.request(app)
@@ -288,11 +288,11 @@ describe('Userdrawn API resource', function(){
 					.set('authorization', `Bearer ${token}`);
 
 				})
-				.then(res => {
+				.then(function(res){
 					res.should.have.status(204);
 					return UserDrawn.findById(userdrawn.id);
 				})
-				.then(_animation => {
+				.then(function(_animation){
 					should.not.exist(_animation);
 				})
 			})
