@@ -8,7 +8,6 @@ const cors = require('cors');
 
 const {router: usersRouter} = require('./users');
 const {router: authRouter, localStrategy, jwtStrategy} = require('./auth');
-const {router: sequenceRouter} = require('./sequences');
 const {router: animationRouter} = require('./animations');
 const {router: userProfileRouter} = require('./userprofile');
 const {router: userdrawnRouter} = require('./userdrawn');
@@ -38,7 +37,6 @@ passport.use(jwtStrategy);
 
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
-app.use('/sequences', sequenceRouter);
 app.use('/animations', animationRouter);
 app.use('/userprofile', userProfileRouter);
 app.use('/userdrawn', userdrawnRouter);

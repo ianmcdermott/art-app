@@ -31,7 +31,8 @@
     "passport-jwt": "^2.2.1",
     "passport-local": "^1.0.0",
     "uuid": "^3.1.0",
-    "cors": "^2.8.4" 
+    "cors": "^2.8.4",
+    "chai-datetime": "^1.5.0" 
   },
   "devDependencies": {
     "chai": "^4.1.2",
