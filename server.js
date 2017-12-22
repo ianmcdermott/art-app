@@ -8,7 +8,6 @@ const cors = require('cors');
 
 const {router: usersRouter} = require('./users');
 const {router: authRouter, localStrategy, jwtStrategy} = require('./auth');
-const {router: sequenceRouter} = require('./sequences');
 const {router: animationRouter} = require('./animations');
 const {router: userProfileRouter} = require('./userprofile');
 const {router: userdrawnRouter} = require('./userdrawn');
@@ -38,7 +37,6 @@ passport.use(jwtStrategy);
 
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
-app.use('/sequences', sequenceRouter);
 app.use('/animations', animationRouter);
 app.use('/userprofile', userProfileRouter);
 app.use('/userdrawn', userdrawnRouter);
@@ -60,20 +58,20 @@ app.use('*', (req, res) =>{
 
 let server;
 
-function runServer() {
+function runServer(databaseUrl = DATABASE_URL, port = PORT) {
   return new Promise((resolve, reject) => {
-    mongoose.connect(DATABASE_URL, { useMongoClient: true }, err => {
+    mongoose.connect(databaseUrl, { useMongoClient: true }, err => {
       if (err) {
         return reject(err);
       }
       server = app
-        .listen(PORT, () => {
+        .listen(port, () => {
           console.log(`Your app is listening on port ${PORT}`);
-          return resolve();
+           resolve();
         })
         .on('error', err => {
           mongoose.disconnect();
-          return reject(err);
+          reject(err);
         });
     });
   });
@@ -87,7 +85,7 @@ function closeServer() {
         if (err) {
           return reject(err);
         }
-        return resolve();
+        resolve();
       });
     });
   });
