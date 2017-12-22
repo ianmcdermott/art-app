@@ -7,3 +7,5 @@ deploy:
   app: murmuring-plateau-90485
   on:
     repo: ianmcdermott/art-app
+services:
+- mongodb
